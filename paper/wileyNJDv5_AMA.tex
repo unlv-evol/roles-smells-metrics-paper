@@ -1,0 +1,1039 @@
+\documentclass[AMA,Times1COL]{WileyNJDv5} %STIX1COL,STIX2COL,STIXSMALL,Times1COL
+\articletype{Article Type}%
+
+\received{Date Month Year}
+\revised{Date Month Year}
+\accepted{Date Month Year}
+\journal{Journal}
+\volume{00}
+\copyyear{2023}
+\startpage{1}
+
+\raggedbottom
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstset{ %
+	%backgroundcolor=\color{white},   % choose the background color
+	basicstyle=\footnotesize,        % size of fonts used for the code
+	breaklines=true,                 % automatic line breaking only at whitespace
+%	captionpos=b,                    % sets the caption-position to bottom
+	commentstyle=\color{mygreen},    % comment style
+	escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+	keywordstyle=\color{blue},       % keyword style
+	stringstyle=\color{mymauve},     % string literal style
+}
+
+\lstdefinelanguage{ini}
+{
+	basicstyle=\ttfamily\footnotesize,
+	columns=fullflexible,
+	morecomment=[s][\color{Orchid}\bfseries]{[}{]},
+	morecomment=[l]{\#},
+	morecomment=[l]{;},
+	commentstyle=\color{mygreen},
+	morekeywords={DataClass,LargeClass,Blob},
+	otherkeywords={=,:},
+	keywordstyle={\color{blue!20}\bfseries}
+}
+
+\begin{document}
+
+\title{Empirical Investigation of the Relationship Between Design
+	Smells and Role Stereotypes}
+
+\author[1]{Daniel Ogenrwot}
+
+\author[2]{Joyce Nakatumba-Nabende}
+
+\author[1]{John Businge}
+
+\author[3]{Michel R.V. Chaudron}
+
+\authormark{OGENRWOT \textsc{et al.}}
+\titlemark{Empirical Investigation of the Relationship Between Design
+	Smells and Role Stereotypes}
+
+\address[1]{\orgdiv{Department of Computer Science}, \orgname{College of Engineering, University of Nevada, Las Vegas}, \orgaddress{\state{Nevada}, \country{United States of America}}}
+
+\address[2]{\orgdiv{Department of Computer Science}, \orgname{Makerere University}, \country{Uganda}}
+
+\address[3]{\orgdiv{Department of Mathematics and Computer Science}, \orgname{Eindhoven University of Technology}, \country{Netherlands}}
+
+\corres{Corresponding author Daniel Ogenrwot, Department of Computer Science, College of Engineering, University of Nevada, Las Vegas, United States of America. \email{ogenrwot@unlv.nevada.edu}}
+
+%\presentaddress{This is sample for present address text this is sample for present address text.}
+
+%\fundingInfo{Text}
+%\JELinfo{ejlje}
+
+\abstract[Abstract]{During the development of software systems, poor design and implementation choices can have a detrimental impact on the maintainability of the software. Design smells, recurring patterns of poorly designed fragments in software, are indicative of these issues. Role-stereotypes signify the generic responsibilities that classes assume in system design. Although the concepts of role-stereotypes and design smells are inherently different, both significantly contribute to the design and maintenance of software systems. Studying this relation is essential for (i) software maintainability, (ii) code quality improvement, (iii) efficient code review, (iv) guided refactoring, (v) early defect detection and (vi) role-specific metrics design.  This paper employs an exploratory approach, combining statistical analysis and unsupervised learning methods, to comprehend the relationship between design smells and role-stereotypes and how this connection varies across different desktop and mobile applications. The study utilizes a dataset comprising 11,350 classes across 30 Java projects mined from GitHub. Overall, the findings reveal several design smells that co-occur more frequently across the entire role-stereotype categories. Specifically, three (3) out of six (6) role-stereotypes considered in this study are more susceptible to design smells. Additionally, the study identifies that design smells are more prevalent in desktop applications than in mobile applications, especially in the Service Provider and Information Holder role-stereotypes. Through unsupervised learning methods, it is observed that certain pairs or groups of role-stereotypes are prone to similar types of design smells compared to others. We believe that these relationships may be associated with the characteristic and collaborative properties between role-stereotypes. Therefore, this study offers crucial insights into previously undisclosed behavior regarding the relationship between design smells and role-stereotypes. The results of this paper can guide software teams in implementing various design smell prevention and correction mechanisms, as well as ensuring the conceptual integrity of classes during their design and maintenance. }
+
+\keywords{Software design, class role stereotype, design smells, code smells, clustering}
+
+\jnlcitation{\cname{%
+\author{Taylor M.},
+\author{Lauritzen P},
+\author{Erath C}, and
+\author{Mittal R}}.
+\ctitle{On simplifying ‘incremental remap’-based transport schemes.} \cjournal{\it J Comput Phys.} \cvol{2021;00(00):1--18}.}
+
+
+\maketitle
+
+\renewcommand\thefootnote{}
+\footnotetext{\textbf{Abbreviations:} OSS, open source software; APC, antigen-presenting cells; IRF, interferon regulatory factor.}
+
+\renewcommand\thefootnote{\fnsymbol{footnote}}
+\setcounter{footnote}{1}
+
+\section{INTRODUCTION}\label{sec:intro}
+
+% Update the references.
+
+% The rapid proliferation of software systems coupled with the ever-changing user requirements has created a challenge of software maintainability. Nearly 70\% of costs for any software engineering project usually goes on maintenance and evolution \cite{jha2019deep}. Nowadays, software systems  are quite complex and constantly adapting to the ever-changing user requirements, which makes them extremely difficult to maintain. The ever increasing maintenance costs can be attributed to poor software designs and bad coding styles \cite{cairo2018impact}. Understanding the relationship between design smells and role-stereotypes is essential for better software design and maintenance.
+
+Software design is an essential component of software engineering. A well-designed software system leads to reliable and maintainable software \cite{imran2019design, imran2022qualitative}. New software applications nowadays are quite complex and constantly adapting to the ever-changing user requirements, which poses a challenge of maintainability. The ever increasing maintenance costs \cite{jha2019deep} are often a consequence of bad design and development practices commonly observed in software systems. While developing software systems, poor design and implementation choices in source code can negatively affect the maintainability of software systems \cite{palomba2018diffuseness}. The problematic structures identified in source code are known as design smells \cite{kaur2015influence,aversano2020empirical,imran2022qualitative}. Design smells represent structural anomalies that deviate from established design principles, introducing technical debt and impeding the overall effectiveness of the software. For instance, a ``God class" assumes too many responsibilities and usually has very many methods, violating the single-responsibility principle. This design smell is a huge technical debt which affects program readability and comprehension. The occurrence of design smells in a software system does not impede the operation of the software. While the presence of design smells does not impede the operation of the software system, it can affect software development, sustainability, and increase the likelihood of software failure \cite{turkistani2019reducing}. Therefore, mitigating design smells in the source code is imperative for enhancing overall software quality. In the ever-evolving landscape of software development, mobile and desktop applications emerge as predominant software systems. Notably, mobile applications undergo more frequent updates compared to their desktop counterparts \cite{mcilroy2016fresh}. Nevertheless, the need for enhanced software maintenance is potent for improving software quality irrespective of the underlying ecosystems. 
+
+Responsibility (role) stereotypes indicate generic responsibilities that classes play in the design of a software system. These roles include; Coordinator (CO), Structurer (ST), Controller (CT), Information Holder (IH), Interfacer (IT), and Service Provider (SP) as initially classified by Wirfs-Brock \cite{wirfs2006characterizing}. In this paradigm, classes are characterized according to the type of responsibility they play in the software design \cite{wirfs2006characterizing}. Knowledge about role-stereotypes has proven very helpful in various tasks of software development and maintenance, such as program understanding, program summarization and quality assurance. Role-stereotypes have also been used in creating better layouts of class diagrams - which results in improved program comprehension \cite{genero2008does,nurwidyantoro2019automated, sharif2009effect,ho2022role}.  Besides this, enhancing source code with role-stereotype information helps improve feature location in source code \cite{alhindawi2013improving}. The benefits of role-stereotypes can be observed as an enrichment of reverse engineering, from the perspective of under-covering software design choices \cite{nurwidyantoro2019automated, ho2022role}.
+
+Although the concepts of role-stereotypes and design smells are widely divergent, both are significant contributors to the design and maintenance of software systems. Multiple studies related to design smells focus on developing detection methods and tools to improve software quality \cite{barbez2020machine,kaur2018detecting, liu2018deep}. On the other hand, studies related to role-stereotypes focuses on classification \cite{dragan2010automatic,nurwidyantoro2019automated} and application of role-stereotypes for example in UML class diagram design \cite{kuzniarz2004empirical}. The substantial interest in enhancing software design and maintainability within the software engineering industry reinforce the importance of understanding the correlation between design smells and role-stereotypes.
+
+ Building this empirical knowledge can provide the following significance; (1) \textbf{software maintainability:} understanding the correlation between design smells and role stereotypes helps in identifying patterns that impact software maintainability. This knowledge aids developers in proactively addressing design issues to prevent long-term software degradation, (2) \textbf{improving code quality:} identifying and mitigating design smells contributes to overall code quality improvement. Developers can prioritize and address design issues that are more likely to impact the specific role stereotypes, (3) \textbf{efficient code reviews:} guide code reviews, developers can focus on areas of the codebase that are more likely to be associated with specific roles, leading to more efficient and targeted code inspections, (4) \textbf{guided code refactoring:} knowing the impact of design smells on role stereotypes provides valuable guidance for refactoring efforts. Developers can prioritize refactoring activities based on the roles affected, ensuring that improvements align with the intended behavior and responsibilities of each software component, (5) \textbf{early  defect detection:} This is particularly important in the software development life cycle, where addressing issues early on is more cost-effective than dealing with them in later stages and (6) \textbf{role-specific metrics:} the empirical knowledge gained in this area can contribute to the development of role-specific metrics for assessing the health and quality of software components.
+
+Despite the aforementioned significance, this relationship remains unclear due to  the structural complexity of source code and across diverse software application ecosystems. To this end, we present an exploratory analysis based on statistical and machine learning methods to understand the relation between design smells and role-stereotypes. Machine learning techniques are able to discover local patterns and make inferences from complex feature representations in a given dataset \cite{awad2015machine}. Recently, unsupervised learning methods have been leveraged to study design smells in static code analysis and have received commendable results \cite{caram2019machine,imran2019design,palomba2017investigating,tahmid2016understanding}. Our study is based on 11,350 Java classes of 30 OSS Java-based projects mined from GitHub. To the best of our knowledge, this is the first study on establishing intrinsic relationship between design smells and role stereotypes.
+As such, we hope to open up the possibility of enhancing design smell metrics with role-stereotype properties as previously observed by \cite{nurwidyantoro2019automated}. The main contributions of the paper are outlined below:
+\begin{itemize}
+	\item [(1)] The study provides a step-by-step approach to build a fine-grained dataset comprising of a combination of design smells and role-stereotype classification data. As a result, we publish a sizable dataset of 11,350 Java classes which can serve as a resource for other researchers.
+	\item [(2)] Using the perspective of role-stereotypes, we presents a comparison of the occurrence of design smells in desktop versus mobile applications. We show the relevant of role-stereotypes information in dealing with design smells.
+	\item [(3)]Furthermore, it provides a clustering approach to analyse the groupings of role-stereotypes that are prone to similar categories of design smells.
+	\item [(4)] Finally, the paper provides insights to software developers, designers and researchers on previously concealed behavior and relationships between design smells and role-stereotypes. This act as a starting for exploration of other related research questions.
+\end{itemize}
+
+The rest of this paper proceeds as follows: In Section~\ref{sec:terminologies}, we define key terminologies and provide a concrete example to motivate the need for the study. Section~\ref{sec:relatedwork} outlines related work and identifies study gaps. Next, in Section~\ref{sec:method}, we provide a comprehensive explanation of the research questions, tools, methods, and analysis performed. The results of our analysis are presented in Section~\ref{sec:result}. Section~\ref{sec:ds_imp} focuses on discussions and implications of the study. The threats to validity are discussed in Section~\ref{sec:threats}. Finally, Section~\ref{sec:conclusion} concludes the paper and provides direction for future work.
+
+\section{TERMINOLOGY AND CONCRETE EXAMPLE}\label{sec:terminologies}
+In this section, we define some of the terminology used throughout this study, and show a concrete example.
+\subsection{Terminology}
+After providing an overview of the problem, let us proceed to formally define the terms used in our study
+\begin{itemize}
+	\item \textbf{role stereotypes:} Denote generic responsibilities that classes undertake in the design of a software system. We employ terms such as ``class role'', ``class responsibility'', and ``class role stereotypes'' interchangeably. It is important to acknowledge that the formal definition is derived from a software design standpoint. However, in this paper, we examine role stereotypes from the implementation perspective.
+	
+%	Indicate generic responsibilities that classes play in the design of a software system. We used interchangeably with "class role", "class responsibility" and "class role stereotypes". It is also important to note that the formal definition is crafted from software design perspective. However, in the paper, we study role stereotypes from the implementation perspective.
+	\item \textbf{design smells:} Indication of poor design and implementation choices, leading to problematic source code structures. In the paper, the term ``antipattern'', ``bad smell'', ``code smell'' has the same meaning as design smell.
+	\item \textbf{class path:} Refers to the fully qualified class name or file name of a Java class. Following \cite{runeson2012case} guideline, we use Java classes as our unit of analysis.
+	\item \textbf{regex:}  Refer to regular expression, used to extract class path from the output of design smell detection - Listing ~\ref{lst:dscode}.
+	\item \textbf{co-occurrence:} Refers to simultaneous presence of two or more design smells within a single role stereotype. For example; if ``LongParameterList`` and ``ComplexClass'' are detected together in Information Holder role stereotype, then we say  ``LongParameterList`` and ``ComplexClass'' co-occur.
+	\item \textbf{cluster}: In this study, a cluuster refers to group of design smells or role-stereotypes with shared characteristics.
+\end{itemize}
+\subsection{Concrete Example}
+%To put the problem into context, we provide the following motivating example using guided refactoring as a use-case. Listing \ref{lst:rscode} shows {\tt ImapStoreStettings.java} class of K-9 app. This class encapsulates IMAP store settings, providing methods to access and manipulate these settings, as well as to retrieve additional settings in the form of key-value pairs. We classify this class as an {\tt Information Holder} role stereotypes. We can see that the code is affected by {\tt LongParameterList} design smell as shown in the highlighted lines {\tt 10-12}. Listing \ref{lst:dscode} present the sample output of {\tt LongParameterList} design smell detected from K-9 source code using Software Architectural Defects (SAD) tool. Line {\tt 19} shows {\tt ImageStoreSettings.java} class.
+%
+%Let us assume that a developer wish to refactor the code at lines {\tt 10-12} of Listing \ref{lst:rscode}. It would be pertinent to know not only the design smell and the class role stereotype but also how they relate. For example, the developer could decide to refactor the code by implementing the \textit{Builder} design pattern. He will create a \textit{Builder} class responsible for constructing an {\tt ImapStoreSettings} object, allowing clients to set specific attributes before building the final object. However, this approach would work well for a Controller class role instead, since the Builder pattern is more suited for constructing objects. Information Holder Class focuses on data transfer, therefore, a better refactoring approach would be to implement a structural design pattern such as Data Transfer Object pattern (DTO).
+To put the problem into context, let us consider a practical example involving code refactoring as a use case. In Listing \ref{lst:rscode}, we examine the {\tt ImapStoreSettings.java} class within the K9 Mail app. This class encapsulates IMAP store settings, offering methods for accessing, manipulating, and retrieving additional settings in key-value pairs. We categorize this class under the role stereotype of an {\tt Information Holder}. It is evident that the code is impacted by the {\tt LongParameterList} design smell, highlighted in lines {\tt 10-12}. In Listing \ref{lst:dscode}, we present a sample output of the {\tt LongParameterList} design smell detected in the K9 Mail project using the Software Architectural Defects (SAD) tool, with line {\tt 19} showcasing the {\tt ImageStoreSettings.java} class.
+
+Assuming a developer aims to refactor the code at lines {\tt 10-12} in Listing \ref{lst:rscode}, it becomes essential to understand not only the design smell and the class role stereotype but also how they are interrelated. For instance, the developer might opt to address the issue by implementing the \textit{Builder} design pattern. This involves creating a \textit{Builder} class responsible for constructing an {\tt ImapStoreSettings} object, allowing clients to set specific attributes before building the final object. However, this approach might be more suitable for a {\tt Controller} class role, as the \textit{Builder} pattern is better suited for object construction. Since the {\tt Information Holder} class focuses on data transfer, a more appropriate refactoring strategy would involve implementing a structural design pattern, such as the Data Transfer Object (DTO) pattern.
+ 
+	\begin{lstlisting}[language={java}, mathescape, backgroundcolor=\color{gray!10}, frame=trlb,caption={\footnotesize Code snippet of  {\tt ImapStoreStettings.java} IH class of K9 Mail project. Line {\tt 10-12} highlighted indicate a {\tt LongParameterList} design smell\label{lst:rscode}}, numbers=left, escapechar=!, tabsize=2, basicstyle=\ttfamily\footnotesize]
+	/**
+	* This class is used to store the decoded contents of an ImapStore URI.
+	*
+	* @see ImapStore#decodeUri(String)
+	*/
+	public class ImapStoreSettings extends ServerSettings {
+		
+		...
+		
+		!\hl{protected ImapStoreSettings(String host, int port, ConnectionSecurity connectionSecurity,}!
+		!\hl{AuthType authenticationType, String username, String password, String clientCertificateAlias,}!
+			!\hl{boolean autodetectNamespace, String pathPrefix)\{}!
+			
+			super(Type.IMAP, host, port, connectionSecurity, authenticationType, username,
+			password, clientCertificateAlias);
+			
+			this.autoDetectNamespace = autodetectNamespace;
+			this.pathPrefix = pathPrefix;
+		}
+		
+		...
+		
+	}
+\end{lstlisting}
+
+\begin{lstlisting}[language={ini}, mathescape, backgroundcolor=\color{gray!10}, frame=trlb,caption={\footnotesize Example {\tt LongParameterList} design smell detected from K9 Mail project using SAD tool. Line {\tt 19} shows {\tt ImageStoreSettings.java} class\label{lst:dscode}}, numbers=left, escapechar=!,tabsize=2]
+	# Results of the detection 
+	
+	...
+	
+	# ------>LongParameterList num: 17
+	
+	17.100.Name = LongParameterList
+	
+	#LongParameterListClass
+	17.100.LongParameterListClass-0 = k9mail.src.main.java.com.fsck.k9.activity.compose.RecipientPresenter
+	17.100.LongParameterListClass-0.NOParam-0 = 9.0
+	17.100.LongParameterListClass-0.NOParam_MaxBound-0 = {NOParam_MaxBound=6.0}
+	
+	# ------>LongParameterList num: 18
+	
+	18.100.Name = LongParameterList
+	
+	#LongParameterListClass
+	!\hl{18.100.LongParameterListClass-0 = k9mail-library.src.main.java.com.fsck.k9.mail.store.imap.ImapStoreSettings}!
+	18.100.LongParameterListClass-0.NOParam-0 = 9.0
+	18.100.LongParameterListClass-0.NOParam_MaxBound-0 = {NOParam_MaxBound=6.0}
+	
+	...
+	
+\end{lstlisting}
+Form the above code snippets, we can ask several questions. For example, are IH more prone to {\tt LongParameterList} then other role-stereotypes? How often does {\tt LongParameterList} occur? Is the occurrence influenced by the type of application - desktop or mobile app? What design choices should be considered for Information Holder role-stereotypes to mitigate occurrence of {\tt LongParameterList}? What refactoring opportunities are possible and how can they be applied? To answer those questions and many other related ones, it is important to build empirical knowledge on the relation between design smells and role-stereotypes. 
+
+\section{RELATED WORK}\label{sec:relatedwork}
+\subsection{Design Smells}
+Design smells incorporate low-level or local source code problems such as code smells \cite{vaucher2009tracking}. Code smells are indicators of defects in source code that affect software quality and evolution \cite{soh2016code, oizumi2018identification,abuhassan2021software}. Fowler \cite{1999:RID:311424} outlined 22 code smells and their corresponding refactoring techniques. Although code smells do not prevent the software from functioning, their existence in source code can lead to a myriad of problems such as weakening the sustainability of the software and increasing the probability of its failure \cite{turkistani2019reducing}. Therefore, mitigating design/code smells is critical for highly scalable and maintainable software. Refactoring is recommended as an intervention aimed at improving the internal structure of existing software code without affecting its observable behavior. It enhance software maintainability and generate a more manageable internal architecture \cite{turkistani2019reducing}. Design smells encompass a broader scope and have a significant impact and hence, refactoring a design smell may result in alterations across a set of classes\cite{sharma2020empirical}.
+
+%\subsubsection{Smells Detection: Methods and Tools}
+Several authors have explored different approaches for detecting code smells from source code. Bafandeh Mayvan et al \cite{bafandeh2020bad} used a metric-based design smell detection approach to detect bad code smells. This was achieved through cross-referencing each instance of the detected bad smell with the corresponding refactoring technique. Kaur \& Singh \cite{kaur2018detecting} presented a supervised-based machine learning algorithm for detecting software code smells from design patterns. The authors considered four (4) design patterns and five (5) code smells. Using J48 decision tree classifier, it was observed that there is a relationship between some design patterns with specific code smells. Saranya et al. \cite{saranya2018model} applied optimization-based approach on model-level code smell detection using Euclidean distance-based Genetic Algorithm and Particle Swarm Optimization (EGAPSO). The study was inspired by the weakness of metric-based code smell detection approach.
+
+
+\subsection{Role-Stereotypes}
+Role-stereotypes indicate generic responsibilities that classes play in the design of a system. Wirfs-Brock\cite{wirfs2006characterizing} proposed six (6) generic categories (shown in Table \ref{table:role-stereotype}). The classification is intended to convey an important part of the design intention of a class. The benefits of role stereotypes are observed in software development and maintenance tasks, such as program comprehension, program summarization, quality assurance and in the creation of layouts for class diagrams \cite{genero2008does, nurwidyantoro2019automated, sharif2009effect}.
+
+\begin{table*}[b]
+	\centering % used for centering table
+	\caption{Generic Role-Stereotype Taxonomy \cite{wirfs2006characterizing, ho2022role}.} % title of Table
+	\begin{tabular*}{\textwidth}{@{\extracolsep\fill}ll@{\extracolsep\fill}}%
+		\toprule
+		\textbf{Role-Stereotype} & \textbf{Description} \\ 
+		\midrule
+		Coordinator & An object that does not make many decisions but, in a rote or mechanical way, delegates work to other objects.\\ 
+		Structurer & An object that maintains relationships between objects and information about those relationships. \\ 
+		Controller & An object designed to make decisions and control a complex task.\\ 
+			Information Holder  & An object designed to know certain information and provide that information to other objects. \\
+		Interfacer & An object that transforms information or requests between distinct parts of a system. \\
+		Service Provider & An object that performs specific work and offers services to others on demand.\\ 
+		\bottomrule
+	\end{tabular*}
+	\label{table:role-stereotype} % is used to refer this table in the text
+\end{table*}
+
+%\subsubsection{Role-Stereotype Classification}
+Based on the benefits that role-stereotypes offer to software design, several researchers have explored the classification of class role-stereotypes in source code. Earlier work by Dragan et al \cite{dragan2010automatic} focused on automatic classification of a class's stereotype for C++ source code. The proposed method consists of rules based on both the stereotype and category distributions of the class signature. Moreno \& Marcus\cite{moreno2012jstereocode} extended Dragan's work to Java source code. 
+They developed "JStereoCode", a tool that automatically identifies the stereotypes of methods and classes in Java systems. The studies in \cite{dragan2010automatic} and \cite{moreno2012jstereocode} are based on expert-designed decision rules that are applied to the syntactical characteristics of the class source code.
+
+Nurwidyantoro et al \cite{nurwidyantoro2019automated} provides a more recent study in this direction by applying machine learning models for improved automated classification of role-stereotypes in Java classes. Source code classes were classified in one of the six role-stereotypes taxonomy proposed by Wirfs-Brock \cite{wirfs2006characterizing}. The result shows that the Random Forest algorithm enhanced by SMOTE resampling yielded the best performance compared to Multinomial Naive Bayes (MNB) and Support Vector Machine (SVM) models.
+
+
+\subsection{Research Gaps}
+In this section, we discuss related work done to understand the relationship between design smells and role-stereotypes. We also try to unveil some gaps in the current body of literature to backup the need for this study. It is important to note that, to the best of our knowledge, no formal in-depth study has been done so far to assess the relationship between design smells and role-stereotypes. Most research attention from both academia and software industry has been directed towards developing various detection and classification methods and tools for design smell and role-stereotype respectively. Some authors have tried to study the relationship between design smells and design patterns \cite{jaafar2014analysing, walter2016relationship, sousa2018systematic, santos2022building} but not role-stereotypes.
+
+Jaafar et al \cite{jaafar2014analysing} analyzed the static relationship between anti-patterns and design patterns. They studied anti-patterns dependencies with other classes within particular design patterns to understand how developers can maintain programs containing those anti-patterns. The study was performed on 1,191 to 3,325 classes of three (3) Java projects (\textit{ArgoUML, JFreeChart, and XercesJ}). It was observed that there is a temporary relationship between anti-pattern and design patterns. However, this study strictly focused on dependencies between anti-patterns and design patterns but not role-stereotypes. Besides, only particular sets of anti-patterns and design patterns were used yet different anti-patterns and design patterns could potentially influence the outcome. The work in \cite{jaafar2014analysing} did not consider the type of systems (desktop, mobile or web-based) and how system type can impact the dependencies between anti-patterns and design patterns.
+
+Walter \& Alkhaeir \cite{walter2016relationship} conducted a study related to that of Jaafar et al \cite{jaafar2014analysing} to understand how the presence of design patterns impacts the existence of code smells. Based on an exploratory approach, 9 design patterns and 7 code smells were analyzed from two sizeable open-source Java projects. Their findings indicated that classes which participate in design patterns appear to display code smells less frequently than other classes. The observed effect was stronger for some patterns (e.g., Singleton, State-Strategy) and weaker for others (e.g., Composite). However, this study does consider whether role-stereotypes could influence the association of design patterns with code smells. The type of application was also not considered in this study. The impact of design patterns on the presence of code smells might differ between desktop, mobile and web applications.
+
+Mannan et al\cite{mannan2016understanding} focused mainly on code smells which tends to affect readability and simplicity. The task of refactoring in this case involves renaming or extracting to methods. Design smells, on the other hand, tend to be more subtle. They usually affect maintainability and flexibility. Next, their study \cite{mannan2016understanding} did not look at the general co-occurrence of code smells and how these co-occurrences varies across desktop and android application. In addition, this study did not look at role-stereotypes. Palomba et al \cite{palomba2017investigating} studied the co-occurrence of different types of smells on the same code component. It was observed that some code smells frequently co-occur and the occurrence of class-level seems to originate from method-level code smells. The projects selected in this study comprises a mixer of Java desktop applications and libraries, whose internal implementation slightly differs. Furthermore, the study did not look at the association of role-stereotypes and co-occurrence of code smells.
+
+In summary, although some work has been carried out to understand design smells and role-stereotypes, little has been done to disclose the non-innate relation between them and how the type of application - mobile versus desktop influence these relations.
+
+\section{STUDY DESIGN}\label{sec:method}
+Overall, we are interesting in building empirical knowledge on the relationship between design smell and role stereotypes. To this end, we outline three research questions detailed in subsection~\ref{sec:researchquestion}, followed by data collection and analysis steps.
+\subsection{Research Questions}\label{sec:researchquestion}
+Specifically, our study aims at answering the following research questions: 
+\begin{itemize}
+	\item \textbf{RQ1:} \textit{How do design smells vary across desktop and mobile applications?} The aim is to investigate and understand the differences in the occurrence and distribution of design smells in software systems developed for desktop compared to mobile platforms. We are also interested in the co-occurrence of these smells. This will give us better understanding of the nature and characteristics of design smells across software ecosystems. Julio et al.,\cite{martins2020code} noted the need for further research on the impact of code smells co-occurrences on internal quality attributes.
+	\item \textbf{RQ2:} \textit{How do design smells relate with different types of role-stereotypes?} In this research question, the focus is to explore the associations and dependencies between design smells and various role-stereotypes within the context of software systems. For example: Do `God-classes’ appear (significantly) more often with \textit{Controller} role-stereotype than with \textit{Service Provider}? This will provide valuable insights that can guide software developers in making informed decisions during the design and refactoring activities.
+	\item \textbf{RQ3:} \textit{Does the type of application (desktop or mobile) influence the relation between design smells and role-stereotypes?} Focuses on understanding whether the nature of the application platform i.e. desktop or mobile, has an impact on the interplay between design smells and role-stereotypes within software systems. Does  the relationship between design smells and role-stereotypes vary based on the software ecosystem?
+\end{itemize} 
+
+\begin{figure}[b]
+	\centering
+	\includegraphics[scale=0.7]{figures/research_design.pdf}
+	\caption[Methodology Pipeline]{The research methodology pipeline. Step 1: data collection; Step 2: design smell detection; Step 3: role-stereotype classification; Step 4: integrate design smell and role-stereotype data to form a fine-grained dataset; Step 5 \& Step 6: data analysis and clustering.}
+	\label{fig:conceptualfw}
+\end{figure}
+
+\subsection{Data Collection}
+As shown in Figure \ref{fig:conceptualfw}, \textit{Step 1} describes the data collection and selection strategy. \textit{Step 2} focuses on the detection and preprocessing design smells from the selected projects. \textit{In Step 3}, we preprocess and classify role stereotypes in 6 categories as previously discussed. \textit{In Step 4}, we systematically integrate design smell and role-stereotype data to produce a fine-grained dataset. Using the fine-grained dataset, we perform analysis \textit{(Step 5)} and data clustering \textit{(Step 6)} techniques to answer the aforementioned research questions.
+
+
+\begin{table*}[t]
+	\centering % used for centering table
+	\caption{Characteristics of desktop projects analyzed in this study (LOC: Lines of Code; NOC: Number of Classes). } % title of Table
+	\begin{tabular*}{\textwidth}{@{\extracolsep\fill}llllll@{\extracolsep\fill}}%
+		\toprule
+		\textbf{No.} & \textbf{Project} & \textbf{Description}  & \textbf{Version} & \textbf{LOC} & \textbf{NOC} \\ 
+			\midrule
+		1 & SweetHome3d & Interior Design Tool & 5.6 & 104,059 & 546 \\ 
+		 2 & Mars Simulation & Object Modeling & 3.1.0  & 255,459 & 1109 \\ 
+		3 & ArgoUML & UML Modeling Tool & 0.35.1 & 177,372 & 1236 \\ 
+		 4 & JEdit & Text Editor & 5.5.0 & 124,164 & 577 \\ 
+		5 & GanttProject & Project Scheduling  and Management & 2.9.11 & 66,709 & 671 \\ 
+		 6 & GoGreen & Carbon Footprint Tracker & 0.1.3 & 4,196 & 60 \\  
+		7 & LiveChatServer & Live Chat Tool & 1.4 & 2,796 & 23 \\ 
+		 8 & Checkstyle &  Java Source Code Validator  & 8.39 & 238,255 & 1008 \\ 
+		9 & Keystore-explorer & Secret Key Management & 5.4.4 & 55,875 & 400 \\ 
+		 10 & Angry IP Scanner & Network Scanner & 3.7.3 & 12,701 & 159 \\
+		11 & JetUML & UML Modeling Tool & 3.1 & 24,965 & 173 \\ 
+		 12 & JPass & Password Manager &  0.1.20 & 3,442 & 38 \\ 
+		13 & LogFX & Log Reader & 0.9.1 & 4,582 & 44 \\ 
+		 14 & PGP Tool & Easy PGP Decryption  and encryption  & 0.5.9.2 & 18,673 & 226 \\ 
+		15 & Freemind & Mind-mapping Tool & 1.0.0 & 67,287 & 370 \\  
+		\bottomrule
+	\end{tabular*}
+	\label{table:selected_projects-desktop} % is used to refer this table in the text
+\end{table*}
+
+\begin{table*}[t]
+	\caption{Characteristics of mobile projects analyzed in this study (LOC: Lines of Code; NOC: Number of Classes). } % title of Table
+	\centering % used for centering table
+	\begin{tabular*}{\textwidth}{@{\extracolsep\fill}llllll@{\extracolsep\fill}}%
+		\toprule
+		\textbf{No.} & \textbf{Project} & \textbf{Description}  & \textbf{Version} & \textbf{LOC} & \textbf{NOC} \\ 
+		\bottomrule
+		1 & K9 Mail & Email Client App & 5.600 & 93,540 & 779 \\ 
+		 2 & Bitcoin Wallet & Bitcoin Payment App & 6.31 & 18,079 & 222 \\ 
+		3 &  KeepassDroid & Password Manager & 2.5.9 & 17,916 & 211 \\ 
+		 4 & Opentrip Planner &  Trip Planning and Navigation & 2.1.5 & 9,760 & 53 \\ 
+		5 & Tweet Lanes & Twitter Client App & 1.4.1 & 541,694 & 130 \\ 
+		 6 & Text Secure & Messaging App & 4.69.5 & 25,886 & 1332 \\ 
+		7 & Telegram & Messaging App & 4.1.1 & 166,731 & 679 \\ 
+		 8 & Materialistic & News Reader App & 3.3 & 21,919 & 131 \\ 
+		9 & Telecine & Full Resolution Video Recoder  & 1.6.2 & 1,410 & 23 \\ 
+		 10 & AmazeFileManager & File Manager &  3.5.2 & 46,135 & 265 \\ 
+		11 & Omni-Notes & Note Taking App & 6.0.5 & 15,932 & 159 \\ 
+		 12 & AntennaPod & Podcast Manager & 2.1.1 & 53,769 & 387 \\ 
+		13 & GnuCash & Expense Tracker & 2.4.1 & 27,837 & 147 \\ 
+		 14 & Timber & Music Player & 1.8 & 20,562 & 163 \\ 
+		15 & SeeWeather  & Weather App & 2.03 & 2,553 & 29 \\ 
+		\bottomrule
+	\end{tabular*}
+	\label{table:selected_projects-mobile} % is used to refer this table in the text
+\end{table*}
+
+\subsubsection*{Step 1: Project Selection}
+In the first phase, we built a dataset based on 30 active open source  Java projects containing a total of 11,350 number of classes (NOC) and 2,224,258 LOC ($\sim$2,224 KLOC) mined from GitHub. The selected projects are grouped as either ``desktop'' or ``mobile'' software project. Tables \ref{table:selected_projects-desktop} and \ref{table:selected_projects-mobile} describes the characteristics of projects selected for this study including their domain, version LOC and NOC. The projects selected in this study are commonly studied by previous researchers and predominantly utilize Java as their primary programming language. The choice of Java is justified by two main factors: (1) Java is the only programming language that works well with our  selected design smell detection tool and (2) Java is prevalent in a diverse array of object-oriented open-source projects across various code repositories, enabling the assessment of numerous design smell metrics. As mentioned in \cite{mannan2016understanding}, Java has more design smell detectors than other languages. Furthermore, Java language is known to support the operation of billions of devices globally. Consequently, the chosen projects are cross-platform compatible (i.e., they can operate on Windows, macOS and Linux operation systems) and depend on Java core libraries for the design of their logical layers. Given these general characteristics, we curated a set of 30 projects from GitHub repository, provided that the project had at least two contributors and the latest commit was not more than one year. This was to ensure that the projects were still actively maintained (not ``toy'' projects) and modest in size. We selected GitHub because of its popularity as the largest social coding platform, hosting the development history of millions of collaborative software repositories \cite{decan2022use}, and  offering diverse source code metadata.
+%The Android projects were selected from a list of projects previously studied by \citet{mannan2016understanding}. 
+The selection of Android-based mobile projects in this study allows for a valid comparison with desktop projects since Android source code are often written in Java or Kotlin. Furthermore, Android stands as the leading mobile operating system, commanding a market share of up to 74.6\%\footnote{https://gs.statcounter.com/os-market-share/mobile/worldwide}. It also consists of a large community of developers delivering billions of apps on mobile software ecosystem.
+
+
+
+\subsubsection*{Step 2: Design smells detection}
+To detect design smells in source code, a number of tools are available. In this study, we used SAD which is part of  \textit{Pattern Trace Identification, Detection, and Enhancement in Java} (Ptidej) tool suite \footnote{https://github.com/ptidejteam/v5.2}. It is an open-source Java-based reverse engineering tool suite that includes several identification algorithms for idioms, micro-patterns, design patterns, and design defects \cite{gueheneuc2007ptidej}. This tool can detect 18 different types of design smells described in Table \ref{table:ds_types}. Using Java classes as the unit of analysis, SAD detects occurrence of design smell using a set of rule cards. For example; ``LongParameterList'' can be detect using the following rule card:
+\begin{verbatim}
+	RULE_CARD : LongParameterList { 
+		RULE : LongParameterListClass { (METRIC: NOParam, VERY_HIGH, 6) } ; 
+	};
+\end{verbatim}
+
+\begin{table*}
+	\centering % used for centering table
+	\caption{Description of the design smells detected using the Ptidej tool.} % title of Table
+	\begin{tabular*}{\textwidth}{@{\extracolsep\fill}lll@{\extracolsep\fill}}%
+		% \begin{tabularx}{|p{1cm}|p{2cm}|p{3cm}|p{6cm}|}
+			\toprule
+			\textbf{No.} & \textbf{Design Smell} & \textbf{Description} \\ 
+			\midrule
+			1 & AntiSingleton & Provides mutable class variables, which consequently could be used as global variables. \\ 
+			2 & BaseClassKnowsDerivedClass & A class that has many subclasses without being abstract.\\ 
+		3 &BaseClassShouldBeAbstract &  A class that has many subclasses without being abstract. \\ 
+			4 &Blob & Large class declares many fields and methods with a low cohesion. \\
+		5 &ClassDataShouldBePrivate & A class exposing its fields, violating the principle of data hiding.\\ 
+		6 &	ComplexClass & A class having at least one method having a high cyclomatic complexity. \\ 
+		7 & FunctionalDecomposition & A main class with a procedural name in which inheritance and polymorphism are scarcely used.\\ 
+		8 &	LargeClass  & A class that has grown too large in term of Lines of Code.\\ 
+		9 &	LazyClass & A class having very small dimension, few methods and low complexity. \\ 
+		10 &	LongMethod & A method that is unduly long in terms of lines of code.\\ 
+		11 &	LongParameterList & A method having a long list of parameters, some of which avoidable.\\
+		12 &	ManyFieldAttributesButNotComplex & Declares many attributes but which is not complex. Data class holding values without providing behaviour.\\
+		13 &	MessageChains  & A long chain of method invocations performed to implement a class functionality. \\ 
+		14 &	RefusedParentBequest & A class redefining most of the inherited methods, thus signaling a wrong hierarchy. \\ 
+		15 &	SpaghettiCode  & A class implementing complex methods interacting between them, with no parameters, using global variables.\\ 
+		16 &	SpeculativeGenerality & A class declared as abstract having very few children classes using its methods. \\ 
+		17 &	SwissArmyKnife  & Complex class that offers a high number of services, such as implementing a high number of interfaces.\\
+		18 &	TraditionBreaker & A class that inherits from a large parent class but that provides little behaviour and without subclasses.\\
+			\bottomrule
+		\end{tabular*}
+		\label{table:ds_types} % is used to refer this table in the text
+	\end{table*}
+	Design smells are detected and stored in ``{\tt .ini}'' files. The file names are tagged with a specific design smell type. For example, in the K9 mail project, {\tt LongParameterList} design smell is stored as {\tt DetectionResults in K9 for LongParameterList.ini}. Our goal is to extract class names and the corresponding design smell detected in that class. Listing~\ref{lst:dscode} shows a sample content of design smell detection file in its raw format. Based on the structure of the \textit{``.ini''}, we derived custom regular expressions to extract class names and their corresponding design smells. In the case of our example in Listing~\ref{lst:dscode}, we use this regex: {\tt k9mail[a-zA-Z0-9.-]+}. For each design smell, we count the number of its occurrence in a given class, otherwise, the value {\tt 0} is assigned\cite{ogenrwot2021integration, ogenrwot, ogenrwot2021using}. The summary of this process is illustrated as pseudo-code in Algorithm \ref{al:process_ds} and the actual implementation can be obtain from our replication package. Table \ref{table:ds_processed} shows a sample output of processed design smells data.
+	%%% algorithm for preprocessing DS
+	\begin{algorithm}
+		\caption{\enskip Peusocode for Extracting Design Smells}\label{alg1}
+		\begin{algorithmic}
+			\Procedure{ExtractDesignSmells}{$iniFilePath$}
+			\State $result \leftarrow ( )$
+			
+			\For {$file \in iniFilePath$}
+			\For{$smell \in smellList$}
+			\State $fileContent \leftarrow readFileContent(file)$
+			\State $matches \leftarrow findDesignSmell(fileContent, smell)$
+			
+			\If{|matches| $\neq$ 0}
+			\State $columnValue \leftarrow columnValue + 1$
+			\Else
+			\State $columnValue \leftarrow 0$
+			\EndIf
+			
+			\State $rowValue \leftarrow file$
+			\State $result.add(rowValue, columnValue)$
+			\EndFor
+			\EndFor
+			
+			\State \Return $result$
+			\EndProcedure
+		\end{algorithmic}
+		\label{al:process_ds}
+	\end{algorithm}
+	
+		\begin{table*}
+		\centering % used for centering table
+		\caption{Sample output of processed design smells dataset. The columns indicate the design smell type and the row indicate Java classes.} % title of Table
+			\begin{tabular*}{\textwidth}{@{\extracolsep\fill}lllllll@{\extracolsep\fill}}%
+			
+			\toprule
+			\textbf{index}& \textbf{FullClassPath} & \textbf{Classname} & \textbf{Blob} &\textbf{LongMethod} &\textbf{ LazyClass} & \textbf{...}  \\ 
+			%heading
+			\midrule % inserts single horizontal line
+			1 & k9mail-library.src.main.java.com.fsck.k9.mail.AuthType.java & AuthType & 3 & 1 &  0 & ... \\ % inserting body of the table
+			2 & k9mail-library.src.main.java.com.fsck.k9.mail.Address.java & Andress & 1 & 0 & 0 & ...  \\
+			3 & k9mail-library.src.main.java.com.fsck.k9.mail.Body.java & Body & 0 & 0 & 2 &  ... \\
+			4 &k9mail-library.src.main.java.com.fsck.k9.mail.Flag.java & Flag & 1 & 0 & 0 & ... \\ 
+			5 & k9mail-library.src.main.java.com.fsck.k9.mail.Folder.java & Folder & 1 & 0 & 0 & ... \\
+			6 &k9mail-library.src.main.java.com.fsck.k9.mail.K9MailLib.java & K9MailLib & 0 & 3 & 0 & ... \\
+			7 & k9mail-library.src.main.java.com.fsck.k9.mail.Message.java & Message & 0 & 0 & 1 & ... \\
+			8 &k9mail-library.src.main.java.com.fsck.k9.mail.Throttle.java & Throttle & 1 & 2 &0 &  ...  \\
+			9 & k9mail-library.src.main.java.com.fsck.k9.mail.K9.java & K9 & 4 & 0 & 0 & ... \\ 
+			10 & k9mail-library.src.main.java.com.fsck.k9.mail.MailService.java & MailService & 1 & 2 & 0 & ... \\  % [1ex] 
+			\bottomrule
+		\end{tabular*}
+		\label{table:ds_processed} % is used to refer this table in the text
+	\end{table*}
+	
+	\subsubsection*{Step 3: Role stereotypes classification}
+	The processing of role-stereotype data was based on the replication package offered by Nurwidyantoro et al. \cite{nurwidyantoro2019automated, ho2022role}. First, the selected project source code
+	is passed to srcML\footnote{https://www.srcml.org/}, a lightweight, highly scalable, robust, multi-language parsing tool to convert source code into an XML format. Next,
+	we built unlabeled data consisting of 21 features for each project. In this study, the feature extraction task was carried out as follows;
+	\begin{enumerate}
+		\item Create a srcML representation of the source code. The output of srcML tool is a list of source
+		code classes in a standardized XML format.
+		\item We use multiple XPath queries to obtain the features of interest.
+	\end{enumerate}
+	The detailed steps of the features extraction are elaborated in previous studies \cite{nurwidyantoro2019automated, ho2022role}. Finally, the unlabeled data was classified to one of the role-stereotype categories i.e.
+	Service Provider, Information Holder, Interfacer, Controller, Coordinator and Structurer. The classification was achieved using the Random Forest classifier\cite{nurwidyantoro2019automated, ho2022role}. Table~\ref{table:rs_sample} shows the sample output of the processed role stereotype data.
+	\begin{table*}
+		\centering % used for centering table
+		\caption{Showing sample of processed role-stereotype classification data.} % title of Table
+		\begin{tabular*}{\textwidth}{@{\extracolsep\fill}lllllll@{\extracolsep\fill}}%
+
+				\toprule
+			\textbf{No.}& \textbf{FullClassPath} & \textbf{Classname} & \textbf{loc} &\textbf{numAttr} & \textbf{...} & \textbf{label} \\ 
+			%heading
+			\midrule % inserts single horizontal line
+			1 & k9mail-library.src.main.java.com.fsck.k9.mail.AuthType.java & AuthType & 33 & 6 & ... & Service Provider\\ % inserting body of the table
+			2 & k9mail-library.src.main.java.com.fsck.k9.mail.Address.java & Andress & 331 & 4 & ... & Interfacer \\
+			3 & k9mail-library.src.main.java.com.fsck.k9.mail.Body.java & Body & 24 & 0 & ... & Interfacer\\
+			4 & k9mail-library.src.main.java.com.fsck.k9.mail.Flag.java& Flag & 64 & 15 & ... & Information Holder\\ 
+			5 & k9mail-library.src.main.java.com.fsck.k9.mail.Folder.java & Folder & 208 & 5 & ... & Structurer\\
+			6 & k9mail-library.src.main.java.com.fsck.k9.mail.K9MailLib.java & K9MailLib & 67 & 7 & ... & Structurer\\
+			7 & k9mail-library.src.main.java.com.fsck.k9.mail.Message.java & Message & 237 & 4 & ... & Coordinator\\
+			8 &k9mail-library.src.main.java.com.fsck.k9.mail.Throttle.java & Throttle & 68 & 2 & ... & Controller \\
+			9 & k9mail-library.src.main.java.com.fsck.k9.mail.K9.java & K9 & 43 & 0 & ... & Controller \\ 
+			10 & k9mail-library.src.main.java.com.fsck.k9.mail.MailService.java & MailService & 25 & 2 & ... & Controller\\  % [1ex] 
+			\bottomrule
+		\end{tabular*}
+		\label{table:rs_sample} % is used to refer this table in the text
+	\end{table*}
+	
+	\subsubsection*{Step 4: Data Integration}
+	Our approach to construct a fine-grained  dataset involved a systematic integration of the preprocessed design smells and role-stereotype data. This approach is adopted and extended from the work of Ogenrwot et al. \cite{ogenrwot2021integration}. It aims to combine information about design smells and role-stereotypes based on their common {\it classpaths}. The matching classpaths serve as key identifiers, ensuring that the relevant data from both datasets is correctly associated. It can be summarized as follows:
+	\begin{itemize}
+		\item The algorithm starts by initializing an empty result set that will store the integrated information. 
+		\item It then retrieves {\it classpaths} from both design smells and role stereotypes data, storing them in separate variables. 
+		\item The algorithm iterates over the combined set of classpaths from both datasets. For each iteration, it checks whether the {\it classpaths} from design smells and role-stereotypes match. If a match is found, it adds the matching {\it classpath} to the result set, along with the corresponding design smells data and role-stereotypes data. This process continues until all {\it classpaths} have been examined. \item Finally, the integrated result set is returned.
+	\end{itemize}
+	Table \ref{table:ds_rs_processed} shows an example output of the fine-grained dataset generated by the algorithm. 
+	
+	
+	%%% algorithm for preprocessing DS
+	\begin{algorithm}
+		\caption{\enskip Integrate Design Semlls and Role Stereotype Data}\label{alg2}
+		\begin{algorithmic}
+			\Procedure{IntegrateData}{$ds\_data, rs\_data$}       
+			\State $result \leftarrow ()$ \Comment{Initialize an empty result set}
+			\State $ds\_classpaths \leftarrow ds\_data.get(classpath)$ \Comment{Get classpaths from design smells data} 
+			\State $rs\_classpaths \leftarrow rs\_data.get(classpath)$ \Comment{Get classpaths from role-stereotypes data} 
+			
+			\For {$ (ds\_classpath$ \textbf{ or } $rs\_classpath ) \in (ds\_classpaths$ \textbf{ or } $rs\_classpaths)$}
+			\If{ $ds\_classpath = rs\_classpath$} \Comment{Check if classpaths match}
+			\State $result.add(classpath)$ \Comment{Add the matching classpath to the result set}
+			\State $result.add(ds\_data[design\_smells])$ \Comment{Add design smells data to the result set}
+			\State $result.add(rs\_data[label])$ \Comment{Add role-stereotypes data to the result set}
+			\EndIf
+			\EndFor
+			
+			\State \Return $result$ \Comment{Return the integrated result set}
+			\EndProcedure
+		\end{algorithmic}
+		\label{al:data_integrated}
+	\end{algorithm}
+	
+	\begin{table*}[!t]
+	\centering % used for centering table
+	\caption{Showing a sample of final dataset after integrating design smell and role stereotypes data.} % title of Table
+	\begin{tabular*}{\textwidth}{@{\extracolsep\fill}llllllll@{\extracolsep\fill}}%
+		
+		\toprule
+		\textbf{No.}& \textbf{FullClassPath} & \textbf{Classname}& \textbf{label} & \textbf{Blob} &\textbf{LongMethod} &\textbf{ LazyClass} & \textbf{...}  \\ 
+		%heading
+		\midrule % inserts single horizontal line
+		1 & k9mail-library.src.main.java.com.fsck.k9.mail.AuthType.java & AuthType& Service Provider & 3 & 1 &  0 & ... \\ % inserting body of the table
+		2 & k9mail-library.src.main.java.com.fsck.k9.mail.Address.java & Andress & Interfacer & 1 & 0 & 0 & ...  \\
+		3 & k9mail-library.src.main.java.com.fsck.k9.mail.Body.java & Body & Interfacer & 0 & 0 & 2 &  ... \\
+		4 &k9mail-library.src.main.java.com.fsck.k9.mail.Flag.java & Flag & Information Holder & 1 & 0 & 0 & ... \\ 
+		5 & k9mail-library.src.main.java.com.fsck.k9.mail.Folder.java & Folder & Structurer & 1 & 0 & 0 & ... \\
+		6 &k9mail-library.src.main.java.com.fsck.k9.mail.K9MailLib.java & K9MailLib & Structurer & 0 & 3 & 0 & ... \\
+		7 & k9mail-library.src.main.java.com.fsck.k9.mail.Message.java & Message & Coordinator & 0 & 0 & 1 & ... \\
+		8 &k9mail-library.src.main.java.com.fsck.k9.mail.Throttle.java & Throttle & Controller & 1 & 2 &0 &  ...  \\
+		9 & k9mail-library.src.main.java.com.fsck.k9.mail.K9.java & K9 & Controller & 4 & 0 & 0 & ... \\ 
+		10 & k9mail-library.src.main.java.com.fsck.k9.mail.MailService.java & MailService & Controller & 1 & 2 & 0 & ... \\  % [1ex] 
+		\bottomrule
+	\end{tabular*}
+	\label{table:ds_rs_processed} % is used to refer this table in the text
+\end{table*}
+	
+	\subsubsection*{Step 5: Data analysis}
+	Under the data analysis, the first step involved grouping the data of each selected project based on the role-stereotype classification. After which the percentages of classes with design smells and those without design smells was calculated from the total number of classes as shown in Table \ref{table:tb_percentages-desktop} and Table \ref{table:tb_percentages-mobile}. 
+	Similarly, for each role-stereotype the total number of design smells was calculated and this data was used to create the stacked-bar chart in Figure \ref{fig:bubble_chart}. The percentage of design smells in each role-stereotype in Figure \ref{fig:pie_chart_percentages} was obtained by dividing the total number of design smells in each role-stereotype by the total number of design smells found in the entire dataset. The selected projects were also grouped based on the application domain (desktop or mobile application). Table \ref{table:tb_highlighted} shows the distribution of design smells in each role-stereotype for a given application domain. The data about role-stereotypes and design smells across mobile and desktop applications was used to generated Figure \ref{fig:bar_chart_percentage}.
+	
+	
+	\subsubsection*{Step 6: Clustering and association rule mining}
+	In this study, we leveraged the Powered Outer Probabilistic Clustering (POPC) \cite{taraba2017clustering}. The selection of this algorithm was driven by the following considerations: First, numerous clustering algorithms including the popular k-means algorithm, require the number of clusters to be specified in advance which is a huge drawback. Some studies use the silhouette coefficient, elbow method, and other approaches to determine the optimal number of clusters. However, those methods have their limitations, for example: sometimes the elbow method fails to give a clear ``elbow point”. Second, k-means is not very suitable for a binary or sparse matrix. Our dataset is quite sparse and since k-means depends on a distance measure (e.g euclidean), it becomes difficult to build cluster from a sparse matrix. 
+	
+	With POPC, there is no need to pre-define the number of clusters. The algorithm addresses this challenge through back-propagation i.e. start with many cluster and gradually optimize to optimal number of clusters. The algorithm is observed to work well on binary datasets and converges to the expected (optimal) number of clusters on theoretical examples as elaborated by Taraba \cite{taraba2017clustering}. The algorithm can be summarized as shown below \cite{taraba2017clustering}.
+	\begin{enumerate}
+		\item Use k-means clustering to assign each sample $s_j$ to a cluster, denoted as $cl(s_j) = k$, where $k \in {1, ..., N}$ and $N$ is chosen to be half the number of data samples.
+		\item Calculate $J_{r=0}$ to assess the initial clustering, with $r$ indicating the iteration of the algorithm.
+		\item Increment $r$ to $r := r + 1$, initializing $J_r = J_{r-1}$.
+		\item For each sample $s_j$, attempt to assign it to all clusters to which it does not currently belong, denoted as $(cl(s_j) \neq k)$.
+		\begin{enumerate}
+			\item [a)] If the temporary evaluation score $J_T > J_r$, then assign $J_r := J_T$ and move sample $s_j$ to the new cluster. 
+		\end{enumerate}
+		\item If $J_r$ is equal to $J_{r-1}$, then stop the algorithm. Otherwise go back to step 3.
+	\end{enumerate}
+	
+		\begin{table*}[b]%
+		\caption{An example of a table constructed using Figure \ref{fig:popc_all} to build Figure \ref{fig:dendogram_rs}. The table shows for each cluster index (CID), the role-stereotypes and design smells present within that cluster. The presence or absence of a role-stereotype in a given cluster is represented with a value of 1 or 0 respectively. The role-stereotypes are abbreviated as follows; Coordinator (CO), Structurer (ST), Service Provider (SP), Information Holder (IH), Controller (CT) and Interfacer (IT).\label{table:clusters}}
+		\begin{tabular*}{\textwidth}{@{\extracolsep\fill}llllllll@{}}
+			\toprule
+			&\multicolumn{6}{@{}l}{\textbf{Role stereotypes}} &\\\cmidrule{2-7}
+			\textbf{CID} & \textbf{CO}  & \textbf{ST} & \textbf{CT} & \textbf{IH} & \textbf{IT} & \textbf{SP} &  \textbf{Design Smells}  \\
+			\midrule
+			0                    & 1    & 1    & 1    & 1    & 1   & 1   & ClassDataShouldBePrivate,  ComplexClass, LargeClass                    \\
+				1                    & 0    & 0    & 0    & 1    & 1   & 1   & LongMethod,  ClassDataShouldBePrivate, ComplexClass, LazyClass                                \\ 
+			2                    & 0   & 1    & 1    & 1    & 1   & 1   & LongParameterList, LongMethod,  ClassDataShouldBePrivate, AntiSingleton, ComplexClass  \\ 
+			3                    & 1    & 1    & 1    & 1    & 1   & 1   & LongParameterList,  ClassDataShouldBePrivate, ComplexClass                           \\ 
+			4                    & 0    & 1    & 1    & 1    & 1   & 1   & LongParameterList,  ClassDataShouldBePrivate, AntiSingleton, ComplexClass                   \\ 
+			5                    & 1    & 1    & 1    & 1    & 1   & 1   & LongParameterList, LongMethod,  ClassDataShouldBePrivate, Blob, AntiSingleton, ComplexClass \\ 
+			6                    & 0    & 1    & 0    & 1    & 1   & 1   & LongParameterList,  BaseClassShouldBeAbstract, Blob, ComplexClass                             \\ 
+			7                    & 0    & 1    & 0    & 1    & 1   & 1   & ClassDataShouldBePrivate                                                                                                                     \\ 
+			8                    & 0    & 0    & 0    & 1    & 1   & 1   & ClassDataShouldBePrivate, ManyFieldAttributesButNotComplex                                        \\ 
+			9                    & 1    & 0    & 0    & 1    & 0   & 1   & SpeculativeGenerality,  ComplexClass  \\ 
+		
+			\bottomrule
+		\end{tabular*}
+		%		\begin{tablenotes}%%[341pt]
+			%			\item[$^{\rm a}$] Example for a first table footnote.
+			%			\item[$^{\rm b}$] Example for a second table footnote.
+			%			\item {\it Source}: Example for table source text.
+			%		\end{tablenotes}
+	\end{table*}
+	
+	We divided the dataset in Table \ref{table:ds_processed} into two groups i.e. desktop and mobile projects respectively for the task of clustering. This is because we want to determine whether there is any observable difference in the cluster formation across the desktop and mobile application. The output of clustering can be observed in Figure \ref{fig:popc_all}. To group role-stereotypes based on the design smells that occurred in them, clusters  in Figure \ref{fig:popc_all} were reconstructed to produce Figure \ref{fig:dendogram_rs} following the steps below:
+	\begin{enumerate}
+		\item[(1)] Data extracted from Figure \ref{fig:popc_all} for both desktop and mobile projects were used to group clusters based on role-stereotypes.
+		\begin{itemize}
+			\item[a.] For each cluster index (CID) within a given role-stereotype, a value $1$ was assigned to the role-stereotype's table cell, otherwise, $0$ was assigned. Design smells identified in that CID was also recorded. The output of this operation is shown in Table \ref{table:clusters}.
+			\item[b.] We repeated step (1a) for all the role-stereotypes.
+		\end{itemize}
+		\item[(2)] The role-stereotypes columns were extracted to create a binary matrix. This matrix is as an n-dimensional array passed to a dendrogram creation function\cite{ogenrwot}. Using the python Plotly package, hierarchical clustering is performed on data to produce the resulting tree shown in Figure \ref{fig:dendogram_ds}.
+	\end{enumerate}
+	
+	In order to better understand the association of design smells with role-stereotypes, this study also explored an alternative approach to the clustering task. The study applied the well-known Apriori algorithms \cite{agrawal1996fast} to construct the association rules. Association rule discovery is an unsupervised learning technique used to detect local patterns which indicates attribute value conditions that occur together in a given dataset \cite{al2014improved}. The association rule mining task was carried out as follows;- We defined a set of items $I={i_1,...,i_n}$ which is a binary set of n attributes (design smells) and a set of m transaction $T={t_1,...,t_m}$, which indicate all java classes analyzed. An association rule $X => Y$ where $X \subseteq I$ and $Y$ is a specific role-stereotype implies that a design smell (or group of design smells) $X$ is associated with $Y$ role-stereotype.  We determine the strengthen of an association rule by its support \ref{eq:support}, confidence \ref{eq:confidence} and lift \ref{eq:lift} metrics. Apriori algorithm was applied with the minimum support value empirically set to $0.05$.
+	\\~\\
+	\begin{equation}
+		support (X => Y) = P (X, Y)\label{eq:support}
+	\end{equation}
+	\begin{equation}
+		confidence = 	\frac{support (X \cup Y)}{support (X)} \label{eq:confidence}
+	\end{equation}
+	
+	\begin{equation}
+		lift (X => Y) = \frac{support (X \cup Y)}{support (X) \times support (Y)} \label{eq:lift}
+	\end{equation}
+	
+	\begin{figure*}[!h]
+	\centerline{\includegraphics[scale=0.7]{figures/heapmap_ds_all}}
+	\caption{Correlation analysis illustrating the co-occurrence patterns of design smells.\label{fig:headmapdsall}}
+	\end{figure*}
+	
+	\section{RESULTS}\label{sec:result}
+	
+	In this section, we present the results of our study. This is driven by answering the following research questions:
+	\subsection*{RQ1: How do design smells vary across mobile and desktop applications? }
+	
+	In our prior study\cite{ogenrwot}, we focused on contrasting the prevalence of design smells between desktop and mobile applications. Specifically, we explored how the application type, whether desktop or mobile, influences the diversity, distribution, and magnitude of design smell occurrences. However, the study was constrained by a relatively small dataset, and the hypothesis testing was conducted considering the entire dataset without a more granular approach. In this study, we build on our prior work by investigating the density of design smells in mobile and desktop applications. This involves comparing the number of design smells per thousand lines of code (KLOC) in the selected projects. Notably, the average number of design smells per KLOC in desktop applications is relatively higher (37.3\%) than in mobile applications (32.7\%). Furthermore, we conducted a statistical test, specifically the Welch Two Sample t-test, to assess the statistical significance of these observed differences. The choice of the Welch Two Sample t-test is motivated by the noticeable variations in the sizes of the selected mobile and desktop applications. The result of the Welch's Two Sample t-test indicates that the aforementioned difference is not statistically significant (t = 0.535, p-value=0.597).
+
+	Using the POPC clustering algorithm, this study affirms theories pertaining to shared characteristics and similarities among design smells. The hierarchical clustering, as illustrated by the dendrogram in Figure \ref{fig:dendogram_ds}, unveils the co-occurrence of design smells in both desktop and mobile applications. The results from Figure \ref{fig:dendogram_ds} are further elaborated in Table \ref{table:ds_den_table}, presenting an insight into the co-occurrence patterns of design smells in desktop and mobile applications..
+	
+	To compliment POPC clustering algorithm, the study explored an alternative approach based on association rule mining. Using the apriori algorithm, association rules were established to uncover relationships between design smells and their corresponding degrees of confidence, as detailed in Table \ref{table:assoc_ds_ds}. The hyper-parameter of the apriori algorithm was fine-tuned by setting the minimum support to 0.05. The results from the association rule mining, presented in Table \ref{table:assoc_ds_ds}, showcase 12 association rules ordered in descending order of confidence. Notably, the study observed a high-confidence association between \textit{AntiSingleton} and \textit{ClassDataShouldBePrivate} with a confidence level of 0.66. Conversely, the association of \textit{LongMethod} with \textit{LongParameterList} and \textit{ComplexClass} exhibited the lowest confidence, registering at 0.10.
+		\begin{table*}[h!]
+		\centering % used for centering table
+		\caption{The  association of design smells with each other and their respective degrees of confidence.} % title of Table
+		\begin{tabular*}{350pt}{@{\extracolsep\fill}llr@{\extracolsep\fill}}%
+			
+			\toprule
+			\textbf{No} & \textbf{Rule} &\textbf{ Confidence}  \\
+			\midrule
+			1. &(AntiSingleton) $\rightarrow$ (ClassDataShouldBePrivate) & 0.66 \\
+			2. &(LongMethod, LongParameterList)	 $\rightarrow$ (ComplexClass) & 0.57 \\
+			3. &(LongParameterList, ComplexClass) $\rightarrow$ (LongMethod)  & 0.50 \\
+			4. &(ComplexClass) $\rightarrow$ (LongMethod) & 0.46 \\
+			5. &(LongParameterList)	 $\rightarrow$ (ComplexClass) & 0.41 \\
+			6. &(LongMethod) $\rightarrow$ (ComplexClass) & 0.37 \\
+			7. &(ClassDataShouldBePrivate) $\rightarrow$ (AntiSingleton) & 0.49 \\
+			8. &(LongMethod, ComplexClass) $\rightarrow$ (LongParameterList) & 0.25 \\
+			9. &(ComplexClass) $\rightarrow$ (LongParameterList) & 0.24 \\
+			10. &(LongParameterList)	 $\rightarrow$ (LongMethod, ComplexClass) & 0.20 \\
+			11. &(ComplexClass)	 $\rightarrow$ (LongMethod, LongParameterList) & 0.12 \\
+			12. &(LongMethod) $\rightarrow$ (LongParameterList, ComplexClass) & 0.10 \\
+			\bottomrule
+		\end{tabular*}
+		\label{table:assoc_ds_ds}
+	\end{table*} 
+	
+	\begin{figure*}[!h]
+		\centerline{\includegraphics[scale=0.8]{figures/dendogram_ds}}
+		\caption{Hierarchical cluster visualization of design Smells that frequently co-occur in desktop (top plot) and mobile (bottom plot) applications.\label{fig:dendogram_ds}}
+	\end{figure*}
+
+	\begin{table*}[h!]
+	\centering % used for centering table
+	\caption{The co-occurrence of  design smells across the desktop and mobile applications extracted from Figure \ref{fig:dendogram_ds}.} % title of Table
+	\begin{tabular*}{\textwidth}{@{\extracolsep\fill}ll@{\extracolsep\fill}}%
+		
+		\toprule
+		\textbf{No} & \textbf{Co-occurrence Set in Desktop} \\
+		\midrule
+		1. & \{BaseClassShouldBeAbstract, ManyFieldAttributeButNotComplex\} \\ 
+		2. & \{Speculative Generality, FunctionalDecomposition, LargeClass, BaseClassKnowsDerivedClass, TraditionalBreaker\}  \\ 
+		3. &  \{SwissArmyKnife, MessageChains, SpaghettiCode\} \\ 
+		4. & \{Blob, ComplexClass\} \\ 
+		5. & \{ClassDataShouldBePrivate, AntiSingleton\} \\ 
+		6. &  \{LongParameterList, LongMethod\} \\
+		\toprule
+		\textbf{No} & \textbf{Co-occurrence Set in Mobile}  \\
+		\midrule
+		1. & \{LongMethod, LazyClass\} \\
+		2. & \{BaseClassShouldBeAbstract, Blob\} \\ 
+		3. &  \{FunctionalDecomposition, SwissArmyKnife, RefusedParentBequest, SpaghettiCode, BaseClassKnowsDerivedClass, MessageChains\} \\ 
+		4. & \{ManyFieldAttributesButNotComplex, LargeClass\} \\ 
+		5. & \{LongParameterList, AntiSingleton\} \\ 
+		6. &  \{ClassDataShouldBePrivate, ComplexClass\} \\ 
+		\bottomrule
+	\end{tabular*}
+	\label{table:ds_den_table}
+\end{table*} 
+\newpage
+	\begin{boxwithhead}
+		{Summary of Results for RQ1}
+		{\noindent 
+			\begin{enumerate}
+			\item On average, design smells are relatively higher in desktop applications than in mobile applications. 
+			\item The average difference in the number of design smells in desktop and mobile applications is not statistically significant. 
+			\item The hierarchical clustering and association rule mining reveals co-occur among design smells.
+				\end{enumerate}
+			}
+	\end{boxwithhead}
+	
+	
+	\subsection*{RQ2: How do design smells relate with different types of role-stereotypes? For example: Do `God-classes’ appear (significantly) more often with \textit{Controller} role-stereotype than with \textit{Service Provider}?}
+	The main objective is to understand the relationship between responsibility (role) stereotypes and design smells. To address this research question, Tables \ref{table:tb_percentages-desktop} and \ref{table:tb_percentages-mobile} provide insights into the percentages of classes containing design smells and those without, categorized by specific role stereotypes. Notably, the {\tt Service Provider} responsibility stereotype consistently exhibits the highest percentage of classes with design smells in both desktop and mobile applications. This finding is also supported by our aggregated results in Figure \ref{fig:pie_chart_percentages}, where we present the overall percentages of design smells within each role stereotype. Specifically, design smells tend to be more prevalent in {\tt Service Provider} (52.4\%), {\tt Interfacer} (25.4\%), and {\tt Information Holder} (17.4\%) compared to {\tt Controller} (2.7\%), {\tt Structurer} (1.6\%), and {\tt Coordinator} (0.5\%) role stereotypes.
+	
+	% percentages pie chart
+	\begin{figure*}[!h]
+		\centering
+		\includegraphics[scale=0.4]{figures/piechart_plot.eps}
+		\caption{Distribution of design smells in each role-stereotype.}
+		\label{fig:pie_chart_percentages}
+	\end{figure*}
+
+	\begin{figure*}[!h]
+		\centerline{\includegraphics[width=\textwidth]{figures/stackedbar_plot}}
+		\caption{Stacked bar chart showing the distribution of design smells in each category role-stereotype. The bar size corresponds to the frequency of occurrence of a specific design smell.\label{fig:bubble_chart}}
+	\end{figure*}
+	% bubble chart goes here
+	
+	The second part of this research question explore the prevalence of specific design smells within each role-stereotype. Figure \ref{fig:bubble_chart} illustrates (i) the occurrence of particular design smells in the respective role-stereotypes and (ii) the magnitude of their occurrence, depicted by the height of the stacked bar plot. Consistent with earlier observations, design smells are notably frequent in the {\tt Service Provider}, {\tt Interfacer}, and {\tt Information Holder} role-stereotypes. Furthermore, {\tt LongMethod}, {\tt ComplexClass}, and {\tt LongParameterList} exhibit the highest occurrence frequency across all role-stereotype categories, surpassing {\tt LargeClass}, {\tt MessageChains}, and {\tt SpaghettiCode}. Additionally, it was noted that {\tt Service Provider} and {\tt Information Holder} are susceptible to a broader spectrum of design smells compared to other role-stereotypes, such as {\tt Coordinator}, as depicted in Table \ref{table:tb_highlighted}.
+%	\begin{figure*}[!h]
+%		\centering
+%		\includegraphics[scale=0.7]{figures/heapmap_rs}
+%		\caption{Correlation of role stereotypes.}
+%		\label{fig:heapmaprsall}
+%	\end{figure*}
+	%table goes here
+		\begin{table*}[h]
+		\centering % used for centering table
+		\caption{The association of various design smells with role-stereotypes with the respective degrees of confidence.} % title of Table
+		\begin{tabular*}{350pt}{@{\extracolsep\fill}llr@{\extracolsep\fill}}%
+			
+			\toprule
+			\textbf{No} & \textbf{Rule} &\textbf{ Confidence}  \\
+			\midrule
+			1. & (ComplexClass) $\rightarrow$ (Service Provider) & 0.72 \\
+			2. & (ComplexClass) $\rightarrow$ (Interfacer) & 0.63 \\
+			3. & (LongMethod) $\rightarrow$ (Interfacer) & 0.62 \\
+			4. & (LongMethod) $\rightarrow$ (Service Provider) & 0.60 \\
+			5. & (LongMethod, LongParameterList) $\rightarrow$ (Service Provider) & 0.58 \\
+			6. & (LongParameterList) $\rightarrow$ (Service Provider) & 0.57 \\
+			7. & (LongMethod, ComplexClass) $\rightarrow$ (Service Provider) & 0.49 \\
+			8. & (LongParameterList, ComplexClass) $\rightarrow$ (Service Provider) & 0.46 \\
+			9. & (LazyClass) $\rightarrow$ (Service Provider) & 0.45 \\
+			10. & (LongMethod, ComplexClass) $\rightarrow$ (Interfacer) & 0.40 \\
+			11. & (ComplexClass) $\rightarrow$ (Interfacer) & 0.38 \\
+			12. & (ClassDataShouldBePrivate) $\rightarrow$ (Information Holder) & 0.36 \\
+			13. & (LongParameterList, ComplexClass) $\rightarrow$ (Interfacer) & 0.36 \\
+			14. & (LongParameterList) $\rightarrow$ (Information Holder) & 0.26 \\ 
+			\bottomrule
+		\end{tabular*}
+		\label{table:assoc_ds_rs}
+	\end{table*} 
+	
+	\textbf{Association Rule Mining:} The results of association rule mining are presented in Table \ref{table:assoc_ds_rs}. Evidently, associations between design smells and specific role stereotypes are observable. These associations can be reasonably attributed to the inherent characteristics and collaborative nature of role stereotypes. For instance, the characteristic of a Service Provider role-stereotype is performing a specific task and mostly implemented using “public static” methods. This implies that most implementations of a Service Provider class will be very small in dimension, few methods and low complexity. These properties are attributed to a LazyClass. Additionally, the study uncovers that design smells such as LongMethod, LongParameterList, and ComplexClass are commonly associated with multiple role stereotypes.
+		\begin{boxwithhead}
+		{Summary of Results for RQ2}
+		{\noindent 
+			\begin{enumerate}
+				\item Design smells tend to occur more often in {\tt Service Provider} (53.4\%), {\tt Interfacer} (26.7\%) and \textit{Information Holder} (15.1\%) than in \textit{Controller} (2.6\%), \textit{Structurer} (1.7\%) and \textit{Coordinator} (0.5\%) role-stereotypes.
+				\item The study observed that \textit{LongMethod}, \textit{ComplexClass} and \textit{LongParameterList} have the highest frequency of occurrence across the entire role-stereotype categories compared to \textit{LargeClass}, \textit{MessageChains} and \textit{SpaghettiCode}.
+				\item There exist, association between design smells and some role-stereotypes. It is believed that these associations are attributed to the characteristics and collaborative nature of role-stereotypes.
+			\end{enumerate}
+		}
+	\end{boxwithhead}
+	
+	\subsection*{RQ3: Does the type of application (desktop or mobile) influence the relation between design smells and role-stereotypes?}
+	
+	%bar chart with percentage
+	To address this question, we start with a comparison of the percentage of design smells in mobile and desktop applications within each role stereotype, as shown in Figure \ref{fig:bar_chart_percentage}. This visualization not only underscores the higher prevalence of design smells in desktop applications but also identifies role stereotypes of particular interest. We observed design smells are more prevalent in {\tt Service Provider}, {\tt Information Holder}, {\tt Controller}, and {\tt Structurer} role stereotypes across both desktop and mobile applications. Conversely, {\tt Interfacer} and {\tt Coordinator} role stereotypes exhibit a higher occurrence of design smells in mobile than desktop applications. The detailed breakdown in Table \ref{table:tb_highlighted} provides insights into the frequency and variety of design smells, highlighting that {\tt Service Provider} and {\tt Information Holder} role stereotypes exhibit the highest diversity of design smells. Additionally, specific design smells are observed to occur exclusively in particular role stereotypes and application types.
+	
+	\begin{figure*}[h!]
+		\centering
+		\includegraphics[scale=0.55]{figures/barchart_mobile_desktop}
+		\caption{Percentage of design smells in mobile vs desktop application for each role-stereotype.}
+		\label{fig:bar_chart_percentage}
+	\end{figure*}
+	
+		\begin{table*}[h]%
+			\caption{Distribution of design smells in each role-stereotype across mobile and desktop applications. The highlighted cells indicate the presence of a particular design smell in a given role-stereotype and type of application.\label{table:tb_highlighted}}
+			\begin{tabular*}{\textwidth}{@{\extracolsep\fill}lllllllllllll@{}}
+				\toprule
+				&\multicolumn{2}{@{}l}{\textbf{CO}} & \multicolumn{2}{@{}l}{\textbf{ST}} & \multicolumn{2}{@{}l}{\textbf{CT}}& \multicolumn{2}{@{}l}{\textbf{IH}}& \multicolumn{2}{@{}l}{\textbf{IT}}& \multicolumn{2}{@{}l}{\textbf{SP}} \\\cmidrule{2-3}\cmidrule{4-5}\cmidrule{6-7}\cmidrule{8-9}\cmidrule{10-11}\cmidrule{12-13}
+				\textbf{Design Smells} & \textbf{M}  & \textbf{D}  & {\textbf{M}}  & \textbf{D}  & \textbf{M}  & \textbf{D} & \textbf{M}  & \textbf{D} & \textbf{M}  & \textbf{D} & \textbf{M}  & \textbf{D}  \\
+				\midrule
+				AntiSingleton  & - & - & \checkmark& \checkmark & \checkmark & \checkmark & \checkmark & \checkmark  &  \checkmark & - & \checkmark & \checkmark \\ 
+				
+				BaseClassKnowsDerivedClass & -  & - & - & - & - & - & - & - & - & - & - & - \\ 
+				
+				BaseClass ShouldBePrivate & - & - & \checkmark & - & - & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\ 
+				
+				Blob  & \checkmark & \checkmark & \checkmark & \checkmark& \checkmark & \checkmark& \checkmark & \checkmark& \checkmark & \checkmark& \checkmark & \checkmark \\ 
+				
+				ClassDataShouldBePrivate& - & - & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark &  \checkmark & \checkmark  \\ 
+				
+				ComplexClass &  \checkmark & \checkmark & \checkmark & \checkmark& \checkmark & \checkmark& \checkmark & \checkmark& \checkmark & \checkmark& \checkmark & \checkmark \\ 
+				
+				FunctionalDecomposition  & - & - & - & - & - & - & - & - & - & - & - & - \\ 
+				
+				LargeClass  & - & - & - & - & - & - & \checkmark & - & - & - & - & - \\ 
+				
+				LazyClass & - & - & - & - & - & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\ 
+				
+				LongMethod & - & - & \checkmark & \checkmark & \checkmark &  \checkmark & \checkmark & \checkmark &  \checkmark & \checkmark &  \checkmark & \checkmark \\ 
+				
+				LongParameterList & \checkmark & \checkmark & \checkmark & \checkmark& \checkmark & \checkmark& \checkmark & \checkmark& \checkmark & \checkmark& \checkmark & \checkmark \\ 
+				
+				MessageChains & -  & - & - & \checkmark & - & - & - & - & - & \checkmark & - & \checkmark \\ 
+				
+				ManyFieldAttributesButNotComplex & - & - & - & - & - & - & \checkmark & \checkmark & - & - & - & - \\ 
+				
+				RefusedParentBequest & - & - & - & - & - & - & - & \checkmark & - & \checkmark & - & \checkmark \\
+				
+				SpaghettiCode  & - & - & - & - & - & \checkmark & - & - & \checkmark & \checkmark  & - & \checkmark  \\ 
+				
+				SpeculativeGenerality &  \checkmark & - & - & -  & - & - & \checkmark & \checkmark & - & - & \checkmark & \checkmark \\ 
+				
+				SwissArmyKnife  & - & - & -  & \checkmark & - & - & - & \checkmark& - & - & - & \checkmark \\
+				
+				TraditionBreaker & - & - & - & - & - & - & - & - & - & - & - & - \\ 
+				\bottomrule
+			\end{tabular*}
+			\begin{tablenotes}%%[341pt]
+				\item[M: ] Mobile application.
+				\item[D: ] Desktop application.
+			\end{tablenotes}
+		\end{table*}
+		
+	Finally, we studied the distribution of design smells using an unsupervised learning technique. The objective was to observe the groups/pairs of role-stereotypes which exhibit similar type of design smells and to study whether this relation stretches across mobile and desktop application. Figure \ref{fig:dendogram_rs} indicates that the groups \{{\tt Coodinator, Structurer}\}, 
+	\{{\tt Controller, nterfacer}\} and 
+	\{{\tt Servicer Provider, Information Holder}\} are quite similar in term of the design smells that occur within the scope of desktop application. The same figure also shows clusters of role-stereotypes:  \{{\tt Interfacer, Service Provider, Information Holder}\} and \{{\tt Coordinator, Controller, Structurer}\} across mobile applications. 
+	We noticed one difference in these groupings across desktop and mobile applications. Specifically, the {\tt Interfacer} role-stereotype has sightly different types of design smells in desktop applications as compared to mobile applications. The fact that interfacers might be designed somewhat differently in the mobile domain also surfaced earlier where a hypothetical explanation is the different availability of libraries and frameworks in the mobile domain.
+	A similarity across mobile and desktop is that both {\tt Service Provider} and {\tt Information Holder} are in both cases grouped as 'similar' in terms of occurrences of design smells.
+	
+	\begin{figure*}[!h]
+		\centering
+		\includegraphics[width=\textwidth,height=12pc]{figures/popc_ds}
+		\caption{Results of clustering created with the POPC algorithm from desktop (left) and mobile (right) projects respectively. The vertical axis represents different samples (classes) belonging to different clusters (indicated in different colours) and the horizontal axis shows different features (design smells).}
+			\label{fig:popc_all}
+	\end{figure*}
+%	\vspace*{-1.5cm}
+	\begin{figure*}[!h]
+		\centering
+		\includegraphics[width=\textwidth,height=17pc]{figures/dendogram_rs.eps}
+		\caption{Hierarchical clusters represented by a dendrogram showing groups of role-stereotype in desktop (left) and mobile (right) applications with common type of design smells. The role-stereotypes are abbreviated as follows; Coordinator (CO), Structurer (ST), Service Provider (SP), Information Holder (IH), Controller (CT) and Interfacer (IT).}
+		\label{fig:dendogram_rs}
+	\end{figure*}
+	
+	
+	\textbf{Association Rule Mining:}
+	% The study presents the result of the association rule mining in Table \ref{table:assoc_rs}. This finding is relatively consistent with the results of POPC algorithms reflected in Figure \ref{fig:all_data_new_cluster_dendogram}. It can be observed that \textit{Interfacer} and \textit{Service Provider}
+	%It is reasonable to think that these associations are attributed to the characteristics and collaborative nature of role-stereotypes. For example, the characteristic of a Service Provider role-stereotype is performing a specific task and mostly implemented using “public static” methods...... 
+	The  results of association rule mining are presented in Table \ref{table:assoc_rs}. This finding is relatively consistent with the results of POPC algorithms reflected in Figure \ref{fig:dendogram_rs}. Based on association rule mining, we can observe that there are generally strong associations of the different role stereotypes with each other across desktop and mobile applications. For example, the study noticed the following association rule with 100\% confidence in desktop applications; \{IT $\rightarrow$ SP\}, \{ST $\rightarrow$ SP\} and \{IT, CT $\rightarrow$ SP\}. Other generated rules such as \{CT $\rightarrow$ SP\}, \{IT $\rightarrow$ CT\}, \{IT, SP $\rightarrow$ CT\}, \{SP, CT $\rightarrow$ IT\} and \{IT $\rightarrow$ SP, CT\} also indicates high association with confidence range of between 89\% - 90\%. Similarly, \{SP $\rightarrow$ CT\}, \{IT $\rightarrow$ CT\}, \{IH $\rightarrow$ SP\} and \{IT, SP $\rightarrow$ CT\} are observed as the strongest rules with 100\% confidence in mobile applications as shown in Table \ref{table:assoc_rs}.
+	As previously stated, the result of  the association is consistent with that of POPC algorithms represented in Figure \ref{fig:dendogram_rs}. In Figure \ref{fig:dendogram_rs}a (desktop application), we can observe a cluster \{SP, IT\} which coincides with the association rule \{IT $\rightarrow$ SP\} in Table \ref{table:assoc_rs}.
+	
+	\begin{table*}[h]%
+		\caption{The association of the different role-stereotypes with each other across the desktop and mobile applications.\label{table:assoc_rs}}
+		\begin{tabular*}{\textwidth}{@{\extracolsep\fill}lllll@{}}
+			\toprule
+			&\multicolumn{2}{@{}l}{\textbf{Desktop}} & \multicolumn{2}{@{}l}{\textbf{Mobile}} \\\cmidrule{2-3}\cmidrule{4-5}
+			\textbf{No.} & \textbf{Rule}  & \textbf{Confidence}  & {\textbf{Rule}}  & \textbf{Confidence}   \\
+			\midrule
+			1. & IT $\rightarrow$ SP & 1.00 & SP $\rightarrow$ CT & 1.00 \\
+			2. & ST  $\rightarrow$ SP & 1.00 & IT $\rightarrow$ CT & 1.00 \\
+			3. & (IT, CT) $\rightarrow$ SP & 1.00 & IH $\rightarrow$ SP & 1.00 \\
+			4. & CT  $\rightarrow$ SP & 0.90 & (IT, SP) $\rightarrow$ CT & 1.00 \\
+			5. & IT $\rightarrow$ CT & 0.89 & IT $\rightarrow$ SP & 0.80 \\
+			6. & (IT, SP) $\rightarrow$ CT & 0.89 & (IT, CT) $\Rightarrow$ SP & 0.80 \\
+			7. & (SP, CT) $\rightarrow$ IT & 0.89 & (SP, CT) $\rightarrow$ IT & 0.80 \\
+			8. & IT $\rightarrow$ (SP, CT) & 0.89 & IT $\rightarrow$ (SP, CT) & 0.80 \\
+			\bottomrule
+		\end{tabular*}
+%		\begin{tablenotes}%%[341pt]
+%			\item[$^{\rm a}$] Example for a first table footnote.
+%			\item[$^{\rm b}$] Example for a second table footnote.
+%			\item {\it Source}: Example for table source text.
+%		\end{tablenotes}
+	\end{table*}
+	
+	\newpage
+	% tables
+		\begin{boxwithhead}
+		{Summary of Results for RQ3}
+		{\noindent 
+			\begin{enumerate}
+				\item \texttt{Service Provider} and \texttt{Information Holder} are prone to a wider range of design smells compared to other role-stereotypes such as \texttt{Coordinator} as shown in Table \ref{table:tb_highlighted}. 
+				\item The \texttt{Interfacer} role-stereotype has sightly different types of design smells in desktop applications as compared to mobile applications. A hypothetical explanation is the availability of libraries and frameworks in the mobile mobile application development ecosystem.
+				\item Figure \ref{fig:dendogram_rs} indicates a similarity in the following groups of role-stereotypes; \{\texttt{Coodinator}, \texttt{Structurer}\}, 
+				\{\texttt{Controller}, \texttt{Interfacer}\} and 
+				\{\texttt{Servicer Provider}, \texttt{Information Holder}\}. The Association rule closely agree with the clustering result.
+			\end{enumerate}
+		}
+	\end{boxwithhead}
+	
+	
+	
+	\section{DISCUSSIONS AND IMPLICATIONS}\label{sec:ds_imp}
+	This section is divided into two subsections. In subsection \ref{discussion}, we discuss observations from our empirical study. The implications of this study are presented in subsection \ref{implications}.
+	\subsection{Discussion of Results} \label{discussion}
+	\subsubsection*{RQ1: How do design smells vary across mobile and desktop applications?}
+	In addressing this research question, we explored the variations in design smells between mobile and desktop applications through two distinct methods. Initially, we compare the number of design smells per thousand lines of code (KLOC) for each selected project. As outlined in the results section, the study notes that the average number of design smells is higher in desktop applications compared to mobile applications. However, this disparity does not reach statistical significance. This finding aligns with earlier research by Mannan et al\cite{mannan2016understanding}. It suggests that the prevalence of design smells in both desktop and mobile applications tends to be consistent, despite the distinct characteristics of these software ecosystems. Another reasonable explanation for this statistical result is the influence of developers' experience and coding styles, implying that less experienced developers are prone to introducing design smells in any project.
+	
+	Design smells co-occurrences have been identified through two unsupervised learning techniques capable of discovering frequent relationships in a dataset i.e. clustering and association rule mining, as illustrated in Figure \ref{fig:dendogram_ds} and Table \ref{table:assoc_ds_ds}, respectively. The results not only affirm some anticipated relationships but also unveil co-occurrences overlooked by prior research in the field. The clustering outcomes presented in Figure \ref{fig:dendogram_ds} offer practical validation of theories pertaining to shared characteristics and similarities among design smells. For instance, through unsupervised learning, we demonstrated that {\tt Speculative Generality} and {\tt SwissArmKnife} are closely related. Nevertheless, we also found some unexpected relationships or similarities in the clusters which require further research to comprehend and provide recommendations. Therefore, we encourage researchers to explore this direction in future studies. Additionally, our study establishes a solid foundation for software educators to illustrate various design principles to students. This allows learners to practically observe examples of both well-designed and poorly designed systems across a diverse range of software systems.
+	
+	\subsubsection*{RQ2: How do design smells relate with different types of role-stereotypes? For example: Do ’God-classes’ appear (significantly) more often with \textit{Controller} role-stereotype than with \textit{Service Provider}?}
+	The findings in the results section outlined three major observations concerning this research question and this will inform our discussion as follows;- 
+	% \\~\\
+	% \textbf{Design smells tend to occur more often in \textit{Service Provider}, \textit{Interfacer} and \textit{Information Holder} than in \textit{Controller}, \textit{Structurer} and \textit{Coordinator} role-stereotypes.} 
+	
+	As observed in Figure \ref{fig:pie_chart_percentages}, we believe that this result is associated with the characteristics and collaborative properties of role-stereotypes. For example, a {\tt Service Provider} is considered an object that performs specific work and offers services to other role-stereotypes on demand Wirfs-Brock\cite{wirfs2006characterizing}. A typical {\tt Service Provider} class cache information and use it to improve performance or give clients more control over their operations Wirfs-Brock\cite{wirfs2006characterizing}. The process of implementing all those operational logic can increase the chance of introducing design smells in source code. Specifically, {\tt LongMethod}, {\tt ComplexClass}, {\tt LongParameterList} and {\tt LazyClass} are identified as the main contributors to high percentage of design smells in the {\tt Service Provider} role-stereotype classes. A hypothetical explanation for the fact that {\tt LongMethod} is largely associated with {\tt Service Provider} is because services are based on long method definitions for API purposes.
+	
+	The {\tt Interfacer} role acts as a mediator to simplify communication with another system or subsystem. Specifically, It is responsible for handling and transforming requests and information between different parts of a system \cite{wirfs2006characterizing}. It is rare to have isolated code in today's enterprise software development. Software systems will often integrate with other systems such as payment APIs with an online shopping application, banking systems integrated with institutions' payment systems, or even subsystems interaction within your software. Based on the definition of a {\tt Interfacer} role, systems integration is one of the most difficult tasks in software development. As a result, software engineers often resort to performing several ``hacks'' in order to realise the desired solution while leveraging design smells (e.g. {\tt ComplexClass} and {\tt LongParameterList} as shown in Figure \ref{fig:bar_chart_percentage}) as a trade-off in the {\tt Interfacer} classes.
+	
+	We also noticed a relatively large distribution (15.1\%) of design smells in the {\tt Information Holder} role-stereotype classes. A Basic example of Information Holders is the entity and value objects in a rich domain model. The relatively large amount of Information Holder across the selected projects can be related to the notion that an information holder may collaborate with service providers like data access classes or configuration classes to fetch more information on demand. 
+	
+	Overall, the selected projects have somewhat low distribution of design smells in the {\tt Structurer}, {\tt Controller} and {\tt Coordinator} role-stereotypes compared to the previously discussed class roles. This observation can be explained three-fold;
+%	as shown in Table \ref{table:tb_percentages-desktop} and Table\ref{table:tb_percentages-mobile}
+	First, there are few number of {\tt Structurer}, {\tt Controller} and {\tt Coordinator} role-stereotypes in the selected projects. This could imply that most software systems have few implementations of those class roles. However, more investigation should be conducted to support this claim. Secondly, it is likely that some class roles such as Service Provider are assuming too many responsibilities, in which case, a refactoring option should be explored. This could also be coupled with the nature of software systems, where, many functionalities are inclined towards services abstraction for API purpose,  transforming information and requests between software layer and data encapsulation. Software engineers and educators should investigate and design role-stereotype based refactoring options. Third, the characteristic of some role-stereotypes safeguards it from design smells. For example, a {\tt Coordinator} delegates work to other objects and it is not involved in a lot of decision making. Therefore, implementing a {\tt Coordinator} object does not involve complex logic and this can limit the possibility of design smells occurrence.
+	
+	\subsubsection*{RQ3: Does the type of application (desktop or mobile) influence the relation between design smells and role-stereotypes?}
+	Although class responsibilities as categorized by Wirfs-Brock\cite{wirfs2006characterizing} are generic, some key notable differences exist between mobile and desktop applications, for example, in desktop applications, the entry point is the {\tt main} method - this can be considered as `centalized flow of control'. In contrast, mobile (Android) applications do not depend on main methods but rather on event-handlers such as {\tt onCreate}, {\tt onResume}, etc. Hence, the overarching notion of behavioural interactions across components of mobile applications is `event-driven'.
+	Furthermore,  desktop applications rely mostly on Java Swing library as their underlying Graphical User Interface (GUI) design library. However, this is not the case in mobile applications since there is a complete separation of the application logic from its presentation i.e. the  GUI  is mostly designed using eXtensible  Markup  Language (XML) \cite{mannan2016understanding}. Therefore, we believe that these differences could potentially influence the occurrence of design smells in various role-stereotype.
+	
+	The findings indicates that desktop applications are prone to design smells compared to mobile applications with the exception of the {\tt interfacer} role-stereotype as shown in Figure \ref{fig:bar_chart_percentage}. It is reasonable to believe that these variations are attributed to the underlying domain infrastructures - i.e. libraries and frameworks that are commonly used for developing applications. When developing mobile applications, certain libraries/frameworks  already exist and the developer does not have to rewrite the same logic from scratch hence reducing the possibility of introducing more design smells. Also, the mobile (Android) ecosystem has attracted a large community of developers and code reviewers who ensure high-quality code before release. However, the high amount of design smells in the {\tt Interfacer} role-stereotype of the mobile application is particularly interesting and merits further investigation. We think this can be explained in twofold; first, it indicates that a lot of functionality in mobile applications has to do with making API calls and requests between software layers. This is also supported by the fact that the Hardware Abstraction Layer (HAL) in Android OS provides standard interfaces that expose device hardware capabilities to the higher-level Java API framework\footnote{https://developer.android.com/guide/platform}. Secondly, the large community of code reviewers and developers can also be disadvantageous. Palomba et al\cite{palomba2018beyond} observed that lack of communication or coordination between developers can cause community smells, making the code to be less maintainable and worse over time. Overall, it is sensible to think that the variety and number of parts that a system has might increase the occurrence of Interfacer-based design smells.
+	
+	
+	\subsection{Research Implications}\label{implications}
+	In this section, we present the implications of this study to software developers, tool creators and researchers.
+	
+	\textbf{To Software Developers:}
+	We discuss two fundamental implications for software developers in two main areas; (1) software design and development and (2) software quality assurance.
+	The findings in the study provide important insights for effective software design and development. In essence, software system designers and developers can review class roles not only in term of their responsibility but also as an indicator of how vulnerability they are to certain group of design smells. This knowledge enables developers to pay extra attention to classes assigned with a certain responsibility. For example, Figure \ref{fig:pie_chart_percentages} and Figure \ref{fig:bubble_chart} indicate that classes which are classified as \texttt{Servicer Provider} are often more prone to a wide range of design smells such as \texttt{LongMethod}, \texttt{LongParameterList} and \texttt{ComplexClass}. Therefore, software developers should incorporate this information during the design-, Quality Assurance-phases and maintenance activities. Understanding which design smells commonly occur in a specific role-stereotype can help developers to look out for such design smells and quickly resolve them to improve the overall software quality and maintainability.
+	
+	As previously noted, our study revealed association of design smells with role-stereotypes. For example, we observed a high association of \texttt{LongMethod} with \texttt{Service Provider}. It seems likely that this association is inevitable or unavoidable, given the definition of \texttt{Service Provider}. Therefore, developers could ignore this design smell on condition that it is unavoidable and essential to their specific code. Moreover, not every smell is one a developer cares about or would fix. However, developers should be careful of \texttt{Speculative Generality} if the code is for a \texttt{Controller} role-stereotype.
+	%Thus, while one might argue this means the association is true, it could just as well be inevitable or unavoidable, given the definition of ServiceProvider. In which case, what should a developer do about the smell? I would argue they will ignore it, since it is to some extent unavoidable and essential to the code. Not every smell is one a developer cares about or would fix; the paper might be improved by making the necessity of fixing the smell part of the implications. Nonetheless this does seem like potentially useful information for a developer ("careful of Speculative Generality if the code is for a controller").
+	
+	% Therefore, developers can know from the start of any new software project that they should pay attention to specific implementation details of their application to mitigate common design smells. 
+	Software quality assurance is an integral part of any software development and plays a significant role in ensuring that a software system conforms to a standard or predefined requirement. Good quality software eases maintenance and facilitates its evolution. Our results  help develop or redefine already existing quality assurance guidelines and reduce the vulnerability of a system to design smells.
+	
+	
+	\textbf{To Software Tool Builders:}
+	Our finding confirms a recommendation by Nurwidyantoro et al. \cite{nurwidyantoro2019automated}: it is likely to be beneficial to  tailor metrics for detecting design smells to specific role-stereotypes. The variation in type and magnitude noticed in the different role-stereotypes as shown in Figure \ref{fig:bubble_chart}, Figure \ref{fig:bar_chart_percentage} and Table \ref{table:tb_highlighted} is a clear indication to design smells detection tool creators that design smells metrics should not be applied uniformly across all classes irrespective of their roles. It would be better to optimize design smell metrics tailoring to a specific project when creating design smell detection tools. As observed by Kuzniarz et al.\cite{kuzniarz2004empirical}, role-stereotypes are helpful for understanding UML class diagram. We believe that using the results obtained from this study, tool builders can begin to explore ways of automatically inferring design smells from UML class diagram and role-stereotypes information. It may even be possible to come up with good recommendations for refactoring for specific combinations of role-stereotypes and design smells.
+	% Design smell detection tools are significant not only for research purposes but also ensuring high-quality software design. The good news is that judging from Figure \ref{fig:general_ds_mob_desk} and Table \ref{table:ds_mob_desk},  detection tools developed for desktop application will probably always work for android applications as well. However, we believe that further improvements such as metrics optimization and enhancing code linting can significantly boost design smell detection tools as discussed below.
+	
+	%\subsubsection{Metrics Optimization} 
+	\textbf{To Researchers:}
+	The findings in the study indicate that researchers can study design smells from a role-stereotype perspective. This insight is significant for the creation of new knowledge and research direction within the scope of design smells and role-stereotype concepts. For example, researchers could explore the possibility of reverse engineering role-stereotype classification techniques to utilize design smells information observed in a given class. 
+	Our results in Figure \ref{fig:bubble_chart}, Figure \ref{fig:dendogram_rs} and Table \ref{table:tb_highlighted} already sheds light on some of those preliminary features. This also implies that researchers studying role-stereotype can easily benefit from data provided by design smells research experts and vice versa, hence creating synergy between researchers studying design smells and role-stereotypes respectively. From a teaching and learning perspective, our findings provide dependable literature for software educator to demonstrator various theoretical concepts related to role-stereotypes and design smells. As such, learners can easily observe those concepts across a variety of software projects for the distribution of design smells across role-stereotypes as shown in Table \ref{table:tb_highlighted}.
+	
+	\section{THREATS TO VALIDITY}\label{sec:threats}
+	In this section, we discuss the threats to validity of our work, such as possible faults in the tools employed, the generalizability, and repeatability of the presented results.
+	
+	\textbf{Construct validity} measures the degree to which tools and metrics measure the properties they are supposed to measure \cite{sharma2021code}. It aims to ensure that observations and inferences made are appropriate based on the measurements taken during the study. In the context of understanding the relationship between role-stereotypes and design smells, the {\tt Ptidej} tool suite used in this study detects design smells based on some predefined set of metrics \cite{ogenrwot}. Relying on the outcome of this tool may pose a threat to validity since the metrics are static and assume that all design smells are equal in weight. However, we believe that the result of this tool is still valid for any static code analysis, which is the focus of our study. Another threat to construct validity is the use of  role-stereotypes classification replication package shared by the authors \cite{nurwidyantoro2019automated}. This tool was trained and evaluated on only one project, i.e., K9-Mail (773 Java classes). To mitigate this risk and improve the role-stereotypes classification accuracy, we re-trained the classification model with a larger dataset of over 5,000 Java classes.
+	
+	\textbf{Internal validity: }The study relied on two significant tools for building our fine-grained data, as previously mentioned. We used the Ptidej tool suite for the detection of design smells and the automated role-stereotypes classification replication package. We believe that the accuracy of our results also depends on the accuracy of those tools. In addition, to mitigate any multiplicity error that might result from the detection of both design smells and role-stereotypes, the study considered only classes with at least one type of design smell and participating in a role-stereotype. This is essential because for any given Java class, you might find a design smell but no/wrong role-stereotype, and vice versa, which can result in a large source of error and affect the overall accuracy.
+	
+	\textbf{External validity: }This concerns the generalizability and repeatability of the produced results. This study was carried out on software systems (desktop and mobile) written in the Java programming language only. However, various platforms within the mobile and desktop ecosystem exist, which also utilize object-oriented paradigms, and it would be important to further explore the relationship within these systems. Therefore, based on the shared characteristics and program structure of any OOP system, we believe that the methods used in this study can be replicated to benefit other object-oriented-based software. Another external threat to validity is the issue of using a relatively modest-sized dataset consisting of 30 projects (11,350 Java classes). Although we believe that the size of the dataset was modest to answer the research questions and draw conclusions, one could argue that using a larger-sized dataset would give more confidence to the results presented in this paper. Nonetheless, to encourage replication and future extensions of this work, we have developed an open-source replication package (scripts and dataset) available online.
+	
+	\textbf{Conclusion validity} assesses the degree to which the conclusions we reached about the relationships in our data are reasonable. A low number of samples, which reduces the ability to reveal patterns in the data, is observed as one of the common threats to this type of validity \cite{wohlin2012experimentation}. Therefore, we aimed at achieving statistical reliability as much as possible, given our sample data. As discussed earlier, the Welch’s statistical test indicated that there is no significant difference between design smells in desktop and mobile applications in terms of the co-occurrence of design smells. The dataset used in this study consists of 11,350 Java class samples extracted from 30 OSS projects. Although we believe that the size of our dataset is considerable, using a larger-sized dataset would give more confidence to the results. Even so, our finding is still consistent with the work of previous authors \cite{mannan2016understanding}.
+	
+	\section{CONCLUSION AND FUTURE WORK}\label{sec:conclusion}
+	
+	In this paper, we have presented an exploratory study to understand the relation between design smells and role-stereotypes and how this relation  varies across desktop and mobile applications. We employed a number of statistical and unsupervised learning methods to report empirical evidence on the aforementioned relationships. Specifically, the study used two unsupervised learning methods i.e. clustering and association rule mining.
+	
+	Our findings shows that design smells tend to occur more often in \texttt{Service Provider}, \texttt{Interfacer} and \texttt{Information Holder} than in \texttt{Controller}, \texttt{Structurer} and \texttt{Coordinator} role-stereotypes. In addition, we found that design smells are more frequent in desktop than mobile applications especially in \texttt{Service Provider} and \texttt{Information Holder} role-stereotypes. Using clustering, this paper revealed that the following pairs \{\texttt{Coordinator}, \texttt{Structurer}\},\{\texttt{Controller}, \texttt{Interfacer}\} and \{\texttt{Service Provider}, \texttt{Information Holder}\} are often quite similar in terms of the type of design smells that often occur in them and within the ambit of desktop applications. This is in  comparison to \{\texttt{Interfacer}, \texttt{Service Provider}, \texttt{Information Holder}\} and \{\texttt{Coordinator}, \texttt{Controller}, \texttt{Structurer}\}  role-stereotypes in mobile applications. The results of this paper can guide software teams in their efforts to implement various code/design smell prevention and correction mechanisms, as well as improve and maintain conceptual integrity of classes during their design and maintenance. Moreover, much as we observed that certain design smells are associated to role-stereotypes (e.g. \texttt{LongMethod} and \texttt{Service Provider}), it could just as well be inevitable or unavoidable. In which case, we argue that a developer should ignore such design smells, since they could to some extent be unavoidable and essential to the code. Besides, not every design smell is one a developer cares about or would fix.
+	
+	In the future, we hope to extend this study to include an analysis of the introduction and evolution of design smells relative to role-stereotypes - i.e. are there any patterns over time? Besides, we believe that methodologies for system/architecture-design can benefit by using the lens of design smells across role-stereotypes. Therefore, it would be interesting to observe how different software architectures 
+	(microservice vs. monolithic) influence the occurrence of design smells for specific role-stereotypes. Using the findings of this study, It would be great to develop different tools to support developers in their day-to-day activities of software design and maintenance.
+
+
+%\backmatter
+\bmsection*{Author contributions}
+
+\textbf{Michel R.V. Chauudron:} conceptualisation, supervision, review and editing manuscript. \textbf{Joyce Nakatumba-Nabende:} writing, review and editing manuscript.  \textbf{John Businge:} review and editing manuscript. \textbf{Daniel Ogenrwot:} data collection, analysis and writing original draft.
+
+\bmsection*{Data Availability Statement}
+The data and script that support the findings of this study are available in 
+
+\bmsection*{Conflict of interest}
+
+The authors declare no potential conflict of interests.
+
+\bibliography{wileyNJD-AMA}
+
+
+%\bmsection*{Supporting information}
+
+%Additional supporting information may be found in the
+%online version of the article at the publisher’s website.
+
+
+%\nocite{*}% Show all bib entries - both cited and uncited; comment this line to view only cited bib entries;
+
+\appendix
+
+\bmsection{Additional Results\label{app1}}
+%\vspace*{12pt}
+
+\begin{table*}[h]%
+	\caption{Provides a summary of the percentages of classes in {\bf desktop} applications categorized by role-stereotypes. It distinguishes between classes with design smells and those without design smells in relation to the total classes within the project. The highlighted cells draw attention to role-stereotypes exhibiting the highest percentage of classes with design smells for a specific project.\label{table:tb_percentages-desktop}}
+	\begin{tabular*}{\textwidth}{@{\extracolsep\fill}llllllllllllll@{}}
+		\toprule
+		&&\multicolumn{2}{@{}l}{\textbf{SP}} & \multicolumn{2}{@{}l}{\textbf{CO}} & \multicolumn{2}{@{}l}{\textbf{IH}}& \multicolumn{2}{@{}l}{\textbf{IT}}& \multicolumn{2}{@{}l}{\textbf{CT}}& \multicolumn{2}{@{}l}{\textbf{ST}} \\\cmidrule{3-4}\cmidrule{5-6}\cmidrule{7-8}\cmidrule{9-10}\cmidrule{11-12}\cmidrule{13-14}
+		\textbf{Projects} & \textbf{NOC} & \textbf{a (\%)}  & \textbf{b (\%)}  & {\textbf{a (\%)}}  & \textbf{b (\%)}  & \textbf{a (\%)}  & \textbf{b (\%)} & \textbf{a (\%)}  & \textbf{b (\%)} & \textbf{a (\%)}  & \textbf{b (\%)} & \textbf{a (\%)}  & \textbf{b (\%)}  \\
+		\midrule
+		SweetHome3D& 546  & 2.93       & 26.19      &\textbf{5.31} & 1.65 & 3.11                         & 38.46 & 2.56                         & 8.97  & 0.73       & 3.11       & 1.65       & 5.31   \\
+		Mars Simulation & 1109  &\textbf{19.93 }      & 23.81      & 0.45 & - & 7.75                         & 23.81 & 12.35                         & 9.47  & -       & 0.09       & 0.90       & 1.44       \\ 
+		ArogUML & 1236 &\textbf{28.07}       & 46.36  & 0.16 & - & 6.07                         & 10.76 & 6.23                         & 1.70  & 0.08       & 0.16       & 0.24       & 0.16       \\ 
+		Edit & 577  & \textbf{46.45}       & 24.78      & 0.52 & - & 13.69                         & 0.32 & 5.03                         & 0.87  & -      & -       & 0.17       & 0.17       \\ 
+		Gantt Project & 671     &\textbf{21.31 }      & 46.05      & 0.15 & - & 6.71                        & 14.90  & 7.60                         & 1.04  & -       & 0.45       & 1.64	       & 0.15       \\ 
+		GoGreen & 60  & \textbf{31.67}      & 35.00     & -	 & 1.67 & 15   &  15            & -  & -       & -       & 1.67	       & -   & -   \\
+		LiveChat Server & 23 &\textbf{26.09}     & 21.74     & -	 & - & 21.74  & 13.04  & 17.39	& -  & -       & -       & -	       & -      \\
+		Checkstyle & 1008  & \textbf{9.62}  & 46.33   & -	 & - & 7.14  & 34.42 & -            & 1.79  & -       & 0.10       & -	       & 0.60 \\
+		Keystore explorer & 400 & \textbf{25.75}  & 29.75   & -	 & - & 5.50 & 20.00 & 14.00  & 4.25  & -  & 0.75 & - & -      \\
+		Angry IP Scanner & 159 &\textbf{25.16}	& 49.06  & -	 & - & 5.03  & 11.95  & 7.55      & 0.63  & -       & -       & 0.63 & -      \\ 
+		jetUML & 173 & \textbf{38.73} & 24.86 & 0.58 & - & 9.83                       & 20.23 & 4.62 & -  & -       & 1.16 & -	       & -      \\
+		jPass & 38  &  \textbf{13.16} & 55.26 & - & - & 5.26  & 18.42 & 5.26 & 2.63 & -       & -       & -	       & -      \\
+		LogFX & 44  & \textbf{25} & 27.7 & - & - & 6.82 & 25.00 & 9.09 & 6.82 & -       & -       & -	       & -      \\
+		PGP Tool & 226  & \textbf{12.83} & 37.17 & - & - & 6.19  & 26.55 & 10.18 & 7.08 & -       & -       & -	       & -      \\
+		Freemind & 370  &  \textbf{22.70} & 45.95 & 1.89 & 0.54 & 7.30 & 10.27 & 6.49 & 2.97 & -       & -       & 1.89	       & -      \\
+		\bottomrule
+	\end{tabular*}
+		\begin{tablenotes}%%[341pt]
+			\item[a: ] Percentage of classes containing design smells
+			\item[b: ] Percentage of classes that does not contain design smells
+		\end{tablenotes}
+\end{table*}
+
+\begin{table*}[h]%
+	\caption{Provides a summary of the percentages of classes in {\bf mobile} applications categorized by role-stereotypes. It distinguishes between classes with design smells and those without design smells in relation to the total classes within the project. The highlighted cells draw attention to role-stereotypes exhibiting the highest percentage of classes with design smells for a specific project.\label{table:tb_percentages-mobile}}
+	\begin{tabular*}{\textwidth}{@{\extracolsep\fill}llllllllllllll@{}}
+		\toprule
+		&&\multicolumn{2}{@{}l}{\textbf{SP}} & \multicolumn{2}{@{}l}{\textbf{CO}} & \multicolumn{2}{@{}l}{\textbf{IH}}& \multicolumn{2}{@{}l}{\textbf{IT}}& \multicolumn{2}{@{}l}{\textbf{CT}}& \multicolumn{2}{@{}l}{\textbf{ST}} \\\cmidrule{3-4}\cmidrule{5-6}\cmidrule{7-8}\cmidrule{9-10}\cmidrule{11-12}\cmidrule{13-14}
+		\textbf{Projects} & \textbf{NOC} & \textbf{a (\%)}  & \textbf{b (\%)}  & {\textbf{a (\%)}}  & \textbf{b (\%)}  & \textbf{a (\%)}  & \textbf{b (\%)} & \textbf{a (\%)}  & \textbf{b (\%)} & \textbf{a (\%)}  & \textbf{b (\%)} & \textbf{a (\%)}  & \textbf{b (\%)}  \\
+		\midrule
+		\begin{tabular}[c]{@{}l@{}}K9 \\ Mail\end{tabular}  & 779   & 4.36       & 37.10      & 0.90                         & 1.67 & \textbf{4.62} & 25.03 & 2.57                         & 7.32  & 2.05       & 8.09       & 1.41       & 4.88       \\
+		Bitcoin Wallet  & 222 & 2.70       & 22.97      & 0.90                         & 1.35 & 4.05                         & 33.33 & \textbf{6.31} & 21.62 & -        & 0.90       & 1.8        & 4.05       \\
+		Keepassdroid & 211 & \textbf{29.86}       & 39.34      & - & - & 9.95	                        & 14.22  & 6.16                         & 0.47  & -       & -       & -	       & -     \\ 
+		OpentripPlanner  & 53 &\textbf{24.53}       & 43.40      & - & - & 3.77                       & 18.87   & 5.66	                         & 3.77  & -       & -       & -	       & -       \\ 
+		Tweet Lanes & 130   &\textbf{22.31}       & 33.08      & - & - & 8.46	                       & 15.38   & 15.38                        & 4.62   & -      & -       & -	       & -       \\
+		Text Secure & 1332 & \textbf{23.87}       & 42.64      & 0.15	 & - & 3.83                        & 11.41  & 12.24            & 4.80  & 0.08       & 0.68       & 0.30	       & -       \\
+		Telegram & 679  & 19.15       & 20.91      & 2.21	 & 0.29 & 6.33                        & 9.13  &\textbf{25.04}            & 16.05  & -       & 0.15       & 0.44	       & 0.29 \\
+		Materialistic& 131 & \textbf{25.19} & 42.75 & -	 & - & - & 15.27 & 12.21 & 3.05 & 1.53  & - & - & - \\
+		Telecine & 23  &  \textbf{26.09} & 26.09 & - & - & -                        & 30.43  & 13.04  & 4.35  & - & - & -	& - \\
+		Amaze File Manager & 265   & \textbf{23.02} & 38.87 & -	 & - & 6.79	& 11.32 & 16.60 & 3.40 & -       & -       & -	       & -      \\
+		Omni-Notes & 159  & \textbf{22.64}	& 45.91  & -	 & 0.63 & 8.81 & 10.69 & 8.81 & 2.52 & -       & -       & -	       & -      \\
+		AntennaPod  & 387  & \textbf{18.60}  & 43.93 & 0.26 & - & 3.62 & 16.02  & 10.85 & 6.20 & -  & 0.52 & -	 & - \\ 
+		GnuCash & 147  &  \textbf{30.61} & 35.37   & - & - & 5.44 & 8.16 & 15.65 & 4.76 & -  & - & -  & -  \\
+		Timber  & 123  & \textbf{24.54} & 36.20 & -	 & - & 11.66 & 9.82 & -          11.66  & 4.29  & -       & 1.23      & -	       & 0.61      \\
+		SeeWeather & 29  & \textbf{31.03}	& 31.03  & -	 & - & 24.14 & 3.45 & 10.34 & -  & -       & -       & -	       & -      \\
+		\bottomrule
+	\end{tabular*}
+	\begin{tablenotes}%%[341pt]
+		\item[a: ] Percentage of classes containing design smells
+		\item[b: ] Percentage of classes that does not contain design smells
+	\end{tablenotes}
+\end{table*}
+
+\begin{table*}[h]
+	\caption{Design smell detection metrics.\label{table:metric}} % title of Table
+	\centering % used for centering table
+	\begin{tabularx}{\textwidth}{llX}
+		\toprule 
+		No.& Metric & Description \\ 
+		\midrule
+		1. & DIT & Depth of inheritance tree of an entity. Uses a recursive algorithm to calculate it. \\ 
+		2. & IR & Inheritance ratio.\\ 
+		3. & LCOM5 & Lack of cohesion in methods of an entity.\\ 
+		4. & McCabe & McCabe Complexity: Number of points of decision + 1 \\ 
+		5. & MultipleInterface & If a class implements more than one interface. \\ 
+		6. & NAD & Number of attributes declared by an entity. \\ 
+		7. & NMD & Number of methods declared by an entity. \\ 
+		8. & NOC & Number of children of an entity. \\ 
+		9. & NOParam & Maximum number of parameters of the methods of an entity.\\ 
+		10. & NOTI & Highest number of transitive invocations among methods of a class. See the Law of Demeter for a definition.\\ 
+		11. & USELESS & Same value for any entity: 1.\\ 
+		12. & WMC & Weight of an entity as the number of method invocations in each method. (Default constructors are considered even if not explicitly declared.).\\
+		\bottomrule
+	\end{tabularx}
+\end{table*}
+
+\end{document}

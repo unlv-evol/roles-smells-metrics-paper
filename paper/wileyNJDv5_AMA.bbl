@@ -1,0 +1,236 @@
+\begin{thebibliography}{10}
+\providecommand \doibase [0]{http://dx.doi.org/}%
+
+\bibitem{imran2019design}
+Imran A. Design Smell Detection and Analysis for Open Source Java Software. In:
+  IEEE.  2019\string:644--648.
+
+\bibitem{imran2022qualitative}
+Imran A, Kosar T. Qualitative analysis of the relationship between design
+  smells and software engineering challenges. In:  2022\string:48--55.
+
+\bibitem{jha2019deep}
+Jha S, Kumar R, Abdel-Basset M, et al. Deep learning approach for software
+  maintainability metrics prediction. {\it Ieee Access.}
+  2019\string;7\string:61840--61855.
+
+\bibitem{palomba2018diffuseness}
+Palomba F, Bavota G, Di~Penta M, Fasano F, Oliveto R, De~Lucia A. On the
+  diffuseness and the impact on maintainability of code smells: a large scale
+  empirical investigation. {\it Empirical Software Engineering.}
+  2018\string;23(3)\string:1188--1221.
+
+\bibitem{kaur2015influence}
+Kaur S, Singh S. Influence of Anti-Patterns on Software Maintenance: A Review.
+  {\it International Journal of Computer Applications.}
+  2015\string;975\string:8887.
+
+\bibitem{aversano2020empirical}
+Aversano L, Carpenito U, Iammarino M. An empirical study on the evolution of
+  design smells. {\it Information.} 2020\string;11(7)\string:348.
+
+\bibitem{turkistani2019reducing}
+Turkistani B, Liu Y. Reducing the Large Class Code Smell by Applying Design
+  Patterns. In: IEEE.  2019\string:590--595.
+
+\bibitem{mcilroy2016fresh}
+Mcilroy S, Ali N, Hassan AE. Fresh apps: an empirical study of
+  frequently-updated mobile apps in the Google play store. {\it Empirical
+  Software Engineering.} 2016\string;21(3)\string:1346--1370.
+
+\bibitem{wirfs2006characterizing}
+Wirfs-Brock RJ. Characterizing classes. {\it IEEE software.}
+  2006\string;23(2)\string:9--11.
+
+\bibitem{genero2008does}
+Genero M, Cruz-Lemus JA, Caivano D, Abrah{\~a}o S, Insfran E, Cars{\'\i} JA.
+  Does the use of stereotypes improve the comprehension of UML sequence
+  diagrams?. In:  2008\string:300--302.
+
+\bibitem{nurwidyantoro2019automated}
+Nurwidyantoro A, Ho-Quang T, Chaudron MRV. Automated classification of class
+  role-stereotypes via machine learning. In: , , ,  2019\string:79--88.
+
+\bibitem{sharif2009effect}
+Sharif B, Maletic JI. The effect of layout on the comprehension of UML class
+  diagrams: A controlled experiment. In: IEEE.  2009\string:11--18.
+
+\bibitem{ho2022role}
+Ho-Quang T, Nurwidyantoro A, Rukmono SA, Chaudron MR, Fr{\"o}ding F, Ngoc DN.
+  Role stereotypes in software designs and their evolution. {\it Journal of
+  Systems and Software.} 2022\string;189\string:111296.
+
+\bibitem{alhindawi2013improving}
+Alhindawi N, Dragan N, Collard ML, Maletic JI. Improving feature location by
+  enhancing source code with stereotypes. In: Ieee.  2013\string:300--309.
+
+\bibitem{barbez2020machine}
+Barbez A, Khomh F, Gu{\'e}h{\'e}neuc YG. A machine-learning based ensemble
+  method for anti-patterns detection. {\it Journal of Systems and Software.}
+  2020\string;161\string:110486.
+
+\bibitem{kaur2018detecting}
+Kaur A, Singh S. Detecting Software Bad Smells from Software Design Patterns
+  using Machine Learning Algorithms. {\it International Journal of Applied
+  Engineering Research.} 2018\string;13(11)\string:10005--10010.
+
+\bibitem{liu2018deep}
+Liu H, Xu Z, Zou Y. Deep learning based feature envy detection. In:
+  2018\string:385--396.
+
+\bibitem{dragan2010automatic}
+Dragan N, Collard ML, Maletic JI. Automatic identification of class
+  stereotypes. In: IEEE.  2010\string:1--10.
+
+\bibitem{kuzniarz2004empirical}
+Kuzniarz L, Staron M, Wohlin C. An empirical study on using stereotypes to
+  improve understanding of UML models. In: IEEE.  2004\string:14--23.
+
+\bibitem{awad2015machine}
+Awad M, Khanna R. Machine learning and knowledge discovery. In: , , Springer,
+  2015\string:19--38.
+
+\bibitem{caram2019machine}
+Caram FL, Rodrigues BRDO, Campanelli AS, Parreiras FS. Machine learning
+  techniques for code smells detection: a systematic mapping study. {\it
+  International Journal of Software Engineering and Knowledge Engineering.}
+  2019\string;29(02)\string:285--316.
+
+\bibitem{palomba2017investigating}
+Palomba F, Oliveto R, De~Lucia A. Investigating code smell co-occurrences using
+  association rule learning: A replicated study. In: IEEE.  2017\string:8--13.
+
+\bibitem{tahmid2016understanding}
+Tahmid A, Nahar N, Sakib K. Understanding the evolution of code smells by
+  observing code smell clusters. In: . 4. IEEE.  2016\string:8--11.
+
+\bibitem{runeson2012case}
+Runeson P, Host M, Rainer A, Regnell B. {\it Case study research in software
+  engineering: Guidelines and examples}.
+\newblock John Wiley \& Sons, 2012.
+
+\bibitem{vaucher2009tracking}
+Vaucher S, Khomh F, Moha N, Gu{\'e}h{\'e}neuc YG. Tracking design smells:
+  Lessons from a study of god classes. In: IEEE.  2009\string:145--154.
+
+\bibitem{soh2016code}
+Soh Z, Yamashita A, Khomh F, Gu{\'e}h{\'e}neuc YG. Do code smells impact the
+  effort of different maintenance programming activities?. In: . 1. IEEE.
+  2016\string:393--402.
+
+\bibitem{oizumi2018identification}
+Oizumi W, Sousa L, Oliveira A, et al. On the identification of design problems
+  in stinky code: experiences and tool support. {\it Journal of the Brazilian
+  Computer Society.} 2018\string;24(1)\string:13.
+
+\bibitem{abuhassan2021software}
+AbuHassan A, Alshayeb M, Ghouti L. Software smell detection techniques: A
+  systematic literature review. {\it Journal of Software: Evolution and
+  Process.} 2021\string;33(3)\string:e2320.
+
+\bibitem{1999:RID:311424}
+Fowler M. {\it Refactoring: Improving the Design of Existing Code}.
+\newblock Boston, MA, USA: Addison-Wesley Longman Publishing Co., Inc., 1999.
+
+\bibitem{sharma2020empirical}
+Sharma T, Singh P, Spinellis D. An empirical investigation on the relationship
+  between design and architecture smells. {\it Empirical Software Engineering.}
+  2020\string;25\string:4020--4068.
+
+\bibitem{bafandeh2020bad}
+Bafandeh~Mayvan B, Rasoolzadegan A, Javan~Jafari A. Bad smell detection using
+  quality metrics and refactoring opportunities. {\it Journal of Software:
+  Evolution and Process.} 2020\string:e2255.
+
+\bibitem{saranya2018model}
+Saranya G, Nehemiah HK, Kannan A, Nithya V. Model level code smell detection
+  using EGAPSO based on similarity measures. {\it Alexandria engineering
+  journal.} 2018\string;57(3)\string:1631--1642.
+
+\bibitem{moreno2012jstereocode}
+Moreno L, Marcus A. Jstereocode: automatically identifying method and class
+  stereotypes in java code. In:  2012\string:358--361.
+
+\bibitem{jaafar2014analysing}
+Jaafar F, Gu{\'e}h{\'e}neuc YG, Hamel S, others . Analysing anti-patterns
+  static relationships with design patterns. {\it Electronic Communications of
+  the EASST.} 2014\string;59.
+
+\bibitem{walter2016relationship}
+Walter B, Alkhaeir T. The relationship between design patterns and code smells:
+  An exploratory study. {\it Information and Software Technology.}
+  2016\string;74\string:127--142.
+
+\bibitem{sousa2018systematic}
+Sousa BL, Bigonha MA, Ferreira KA. A systematic literature mapping on the
+  relationship between design patterns and bad smells. In:
+  2018\string:1528--1535.
+
+\bibitem{santos2022building}
+Santos JAM, Petronilo GXA. Building empirical knowledge on the relationship
+  between code smells and design patterns: An exploratory study. {\it Journal
+  of Software: Evolution and Process.} 2022\string;34(9)\string:e2487.
+
+\bibitem{mannan2016understanding}
+Mannan UA, Ahmed I, Almurshed RAM, Dig D, Jensen C. Understanding code smells
+  in android applications. In: IEEE.  2016\string:225--236.
+
+\bibitem{martins2020code}
+Martins J, Bezerra C, Uch{\^o}a A, Garcia A. Are code smell co-occurrences
+  harmful to internal quality attributes? a mixed-method study. In:
+  2020\string:52--61.
+
+\bibitem{decan2022use}
+Decan A, Mens T, Mazrae PR, Golzadeh M. On the use of GitHub actions in
+  software development repositories. In: IEEE.  2022\string:235--245.
+
+\bibitem{gueheneuc2007ptidej}
+Gu{\'e}h{\'e}neuc YG. Ptidej: A flexible reverse engineering tool suite. In:
+  IEEE.  2007\string:529--530.
+
+\bibitem{ogenrwot2021integration}
+Ogenrwot D, Nakatumba-Nabende J, Chaudron MR. Integration of design smells and
+  role-stereotypes classification dataset. {\it Data in Brief.}
+  2021\string;36\string:107125.
+
+\bibitem{ogenrwot}
+Ogenrwot D, Nakatumba{-}Nabende J, Chaudron MRV. Comparison of Occurrence of
+  Design Smells in Desktop and Mobile Applications. In:  Bainomugisha E,
+  Chaudron M, Hebig R. \kern-2pt, eds. {\it Proceedings of the 2020 African
+  Conference on Software Engineering {(ACSE} 2020), Nairobi, Kenya, September
+  16-17, 2020}. 2689 of {\it {CEUR} Workshop Proceedings}. CEUR-WS.org 2020.
+
+\bibitem{ogenrwot2021using}
+Ogenrwot D. {\it Using machine learning to understand the association of design
+  smells with role-stereotypes in software systems}. PhD thesis. Makerere
+  University,  2021.
+
+\bibitem{taraba2017clustering}
+Taraba P. Clustering for Binary Featured Datasets. In: Springer.
+  2017\string:127--142.
+
+\bibitem{agrawal1996fast}
+Agrawal R, Mannila H, Srikant R, Toivonen H, Verkamo AI, others . Fast
+  discovery of association rules.. {\it Advances in knowledge discovery and
+  data mining.} 1996\string;12(1)\string:307--328.
+
+\bibitem{al2014improved}
+Al-Maolegi M, Arkok B. An improved Apriori algorithm for association rules.
+  {\it arXiv preprint arXiv:1403.3948.} 2014.
+
+\bibitem{palomba2018beyond}
+Palomba F, Tamburri DAA, Fontana FA, Oliveto R, Zaidman A, Serebrenik A. Beyond
+  technical aspects: How do community smells influence the intensity of code
+  smells?. {\it IEEE transactions on software engineering.} 2018.
+
+\bibitem{sharma2021code}
+Sharma T, Efstathiou V, Louridas P, Spinellis D. Code smell detection by deep
+  direct-learning and transfer-learning. {\it Journal of Systems and Software.}
+  2021\string;176\string:110936.
+
+\bibitem{wohlin2012experimentation}
+Wohlin C, Runeson P, H{\"o}st M, Ohlsson MC, Regnell B, Wessl{\'e}n A. {\it
+  Experimentation in software engineering}.
+\newblock Springer Science \& Business Media, 2012.
+
+\end{thebibliography}
