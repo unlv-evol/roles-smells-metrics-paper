@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.7.15)  14 JAN 2024 15:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.7.15)  19 FEB 2024 19:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1176,47 +1176,50 @@ f): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
 <figures/research_design.pdf, id=210, 593.3367pt x 368.33609pt>
 File: figures/research_design.pdf Graphic file (type pdf)
 <use figures/research_design.pdf>
-Package pdftex.def Info: figures/research_design.pdf  used on input line 251.
+Package pdftex.def Info: figures/research_design.pdf  used on input line 253.
 (pdftex.def)             Requested size: 415.33286pt x 257.8335pt.
 [6]
-Underfull \hbox (badness 10000) detected at line 262
-[]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 288
+Underfull \hbox (badness 10000) detected at line 264
 []
  []
 
 [7 <./figures/research_design.pdf>]
-Underfull \hbox (badness 10000) detected at line 331
+Underfull \hbox (badness 10000) detected at line 290
+[]
+ []
+
+[8]
+Underfull \hbox (badness 10000) detected at line 327
 []
  []
 
 
-Overfull \hbox (3.39935pt too wide) in alignment at lines 332--356
+Overfull \hbox (3.39935pt too wide) in alignment at lines 328--352
 [] [] [] 
  []
 
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
-put line 362.
-[8]
-Underfull \hbox (badness 10000) detected at line 391
+put line 358.
+
+Underfull \hbox (badness 10000) detected at line 387
 []
  []
 
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 [9]
-Underfull \hbox (badness 10000) detected at line 426
+Underfull \hbox (badness 10000) detected at line 422
 []
  []
 
 [10]
-Underfull \hbox (badness 10000) detected at line 483
+Underfull \hbox (badness 10000) detected at line 479
 []
  []
 
 [11] [12]
-Underfull \hbox (badness 10000) in paragraph at lines 562--564
+Underfull \hbox (badness 10000) in paragraph at lines 558--560
 
  []
 
@@ -1229,21 +1232,21 @@ f>
 (epstopdf)                    size: 29760 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/heapmap_ds_all-eps
 -converted-to.pdf figures/heapmap_ds_all.eps>
-(epstopdf)             \includegraphics on input line 576.
+(epstopdf)             \includegraphics on input line 572.
 Package epstopdf Info: Output file is already uptodate.
 <figures/heapmap_ds_all-eps-converted-to.pdf, id=351, 578.16pt x 433.62pt>
 File: figures/heapmap_ds_all-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/heapmap_ds_all-eps-converted-to.pdf>
 Package pdftex.def Info: figures/heapmap_ds_all-eps-converted-to.pdf  used on i
-nput line 576.
+nput line 572.
 (pdftex.def)             Requested size: 404.70924pt x 303.53192pt.
 
-Underfull \hbox (badness 10000) detected at line 577
+Underfull \hbox (badness 10000) detected at line 573
 []
  []
 
 [13 <./figures/heapmap_ds_all-eps-converted-to.pdf>]
-Underfull \hbox (badness 10000) detected at line 592
+Underfull \hbox (badness 10000) detected at line 588
 []
  []
 
@@ -1256,16 +1259,16 @@ Package epstopdf Info: Source file: <figures/dendogram_ds.eps>
 (epstopdf)                    size: 184395 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/dendogram_ds-eps-c
 onverted-to.pdf figures/dendogram_ds.eps>
-(epstopdf)             \includegraphics on input line 616.
+(epstopdf)             \includegraphics on input line 612.
 Package epstopdf Info: Output file is already uptodate.
 <figures/dendogram_ds-eps-converted-to.pdf, id=430, 452.69125pt x 544.0325pt>
 File: figures/dendogram_ds-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/dendogram_ds-eps-converted-to.pdf>
 Package pdftex.def Info: figures/dendogram_ds-eps-converted-to.pdf  used on inp
-ut line 616.
+ut line 612.
 (pdftex.def)             Requested size: 362.15349pt x 435.2266pt.
 
-Underfull \hbox (badness 10000) detected at line 617
+Underfull \hbox (badness 10000) detected at line 613
 []
  []
 
@@ -1273,7 +1276,7 @@ Underfull \hbox (badness 10000) detected at line 617
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Underfull \hbox (badness 10000) detected at line 622
+Underfull \hbox (badness 10000) detected at line 618
 []
  []
 
@@ -1290,16 +1293,16 @@ Package epstopdf Info: Source file: <figures/piechart_plot.eps>
 (epstopdf)                    size: 14101 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/piechart_plot-eps-
 converted-to.pdf figures/piechart_plot.eps>
-(epstopdf)             \includegraphics on input line 666.
+(epstopdf)             \includegraphics on input line 663.
 Package epstopdf Info: Output file is already uptodate.
 <figures/piechart_plot-eps-converted-to.pdf, id=450, 722.7pt x 578.16pt>
 File: figures/piechart_plot-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/piechart_plot-eps-converted-to.pdf>
 Package pdftex.def Info: figures/piechart_plot-eps-converted-to.pdf  used on in
-put line 666.
+put line 663.
 (pdftex.def)             Requested size: 289.07487pt x 231.2599pt.
 
-Underfull \hbox (badness 10000) detected at line 667
+Underfull \hbox (badness 10000) detected at line 664
 []
  []
 
@@ -1312,19 +1315,19 @@ df>
 (epstopdf)                    size: 21995 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/stackedbar_plot-ep
 s-converted-to.pdf figures/stackedbar_plot.eps>
-(epstopdf)             \includegraphics on input line 672.
+(epstopdf)             \includegraphics on input line 669.
 Package epstopdf Info: Output file is already uptodate.
 <figures/stackedbar_plot-eps-converted-to.pdf, id=451, 722.7pt x 433.62pt>
 File: figures/stackedbar_plot-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/stackedbar_plot-eps-converted-to.pdf>
 Package pdftex.def Info: figures/stackedbar_plot-eps-converted-to.pdf  used on 
-input line 672.
+input line 669.
 (pdftex.def)             Requested size: 504.50787pt x 302.70486pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Underfull \hbox (badness 10000) detected at line 687
+Underfull \hbox (badness 10000) detected at line 684
 []
  []
 
@@ -1335,37 +1338,26 @@ Package epstopdf Info: Source file: <figures/barchart_mobile_desktop.eps>
 (epstopdf)                    size: 31859 bytes
 (epstopdf)             Output file: <figures/barchart_mobile_desktop-eps-conver
 ted-to.pdf>
-(epstopdf)                    date: 2023-12-16 20:04:28
-(epstopdf)                    size: 19457 bytes
+(epstopdf)                    date: 2024-01-14 15:00:31
+(epstopdf)                    size: 19448 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/barchart_mobile_de
 sktop-eps-converted-to.pdf figures/barchart_mobile_desktop.eps>
-(epstopdf)             \includegraphics on input line 731.
-runsystem(repstopdf --outfile=figures/barchart_mobile_desktop-eps-converted-to.
-pdf figures/barchart_mobile_desktop.eps)...executed safely (allowed).
-
-Package epstopdf Info: Result file: <figures/barchart_mobile_desktop-eps-conver
-ted-to.pdf>
-(epstopdf)                    date: 2024-01-14 15:00:31
-(epstopdf)                    size: 19448 bytes.
-<figures/barchart_mobile_desktop-eps-converted-to.pdf, id=551, 722.7pt x 433.62
+(epstopdf)             \includegraphics on input line 728.
+Package epstopdf Info: Output file is already uptodate.
+<figures/barchart_mobile_desktop-eps-converted-to.pdf, id=550, 722.7pt x 433.62
 pt>
 File: figures/barchart_mobile_desktop-eps-converted-to.pdf Graphic file (type p
 df)
 <use figures/barchart_mobile_desktop-eps-converted-to.pdf>
 Package pdftex.def Info: figures/barchart_mobile_desktop-eps-converted-to.pdf  
-used on input line 731.
-(pdftex.def)             Requested size: 397.48622pt x 238.49173pt.
+used on input line 728.
+(pdftex.def)             Requested size: 361.3491pt x 216.80946pt.
 
-Underfull \hbox (badness 10000) detected at line 732
+Underfull \hbox (badness 10000) detected at line 729
 []
  []
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
+[18 <./figures/barchart_mobile_desktop-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <figures/popc_ds.eps>
 (epstopdf)                    date: 2024-01-03 10:10:05
 (epstopdf)                    size: 5536808 bytes
@@ -1374,17 +1366,14 @@ Package epstopdf Info: Source file: <figures/popc_ds.eps>
 (epstopdf)                    size: 1212331 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/popc_ds-eps-conver
 ted-to.pdf figures/popc_ds.eps>
-(epstopdf)             \includegraphics on input line 794.
+(epstopdf)             \includegraphics on input line 791.
 Package epstopdf Info: Output file is already uptodate.
-<figures/popc_ds-eps-converted-to.pdf, id=553, 764.8575pt x 221.82875pt>
+<figures/popc_ds-eps-converted-to.pdf, id=604, 764.8575pt x 221.82875pt>
 File: figures/popc_ds-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/popc_ds-eps-converted-to.pdf>
 Package pdftex.def Info: figures/popc_ds-eps-converted-to.pdf  used on input li
-ne 794.
-(pdftex.def)             Requested size: 504.50406pt x 143.9974pt.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
+ne 791.
+(pdftex.def)             Requested size: 420.67291pt x 122.00616pt.
 Package epstopdf Info: Source file: <figures/dendogram_rs.eps>
 (epstopdf)                    date: 2024-01-03 10:56:04
 (epstopdf)                    size: 142619 bytes
@@ -1394,37 +1383,28 @@ Package epstopdf Info: Source file: <figures/dendogram_rs.eps>
 (epstopdf)                    size: 46695 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/dendogram_rs-eps-c
 onverted-to.pdf figures/dendogram_rs.eps>
-(epstopdf)             \includegraphics on input line 801.
+(epstopdf)             \includegraphics on input line 798.
 Package epstopdf Info: Output file is already uptodate.
-<figures/dendogram_rs-eps-converted-to.pdf, id=554, 807.015pt x 331.2375pt>
+<figures/dendogram_rs-eps-converted-to.pdf, id=605, 807.015pt x 331.2375pt>
 File: figures/dendogram_rs-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/dendogram_rs-eps-converted-to.pdf>
 Package pdftex.def Info: figures/dendogram_rs-eps-converted-to.pdf  used on inp
-ut line 801.
-(pdftex.def)             Requested size: 504.50627pt x 204.00046pt.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Underfull \hbox (badness 10000) detected at line 814
+ut line 798.
+(pdftex.def)             Requested size: 484.21274pt x 198.74402pt.
+ [19 <./figures/popc_ds-eps-converted-to.pdf>]
+Underfull \hbox (badness 10000) detected at line 811
 []
  []
 
-[18]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[19 <./figures/barchart_mobile_desktop-eps-converted-to.pdf>] [20 <./figures/po
-pc_ds-eps-converted-to.pdf> <./figures/dendogram_rs-eps-converted-to.pdf>]
-[21] [22] [23]
-Underfull \hbox (badness 1062) in paragraph at lines 922--923
+[20 <./figures/dendogram_rs-eps-converted-to.pdf>] [21] [22] [23]
+Underfull \hbox (badness 1062) in paragraph at lines 920--921
 []\T1/ptm/m/n/10 (+20) Our find-ings shows that de-sign smells tend to oc-cur m
 ore of-ten in \T1/pcr/m/n/10 Service Provider\T1/ptm/m/n/10 (+20) , \T1/pcr/m/n
 /10 Interfacer \T1/ptm/m/n/10 (+20) and
  []
 
 [24] (./wileyNJDv5_AMA.bbl [25])
-Overfull \hbox (9.0pt too wide) in paragraph at lines 951--951
+Overfull \hbox (9.0pt too wide) in paragraph at lines 949--949
 [] [] 
  []
 
@@ -1435,7 +1415,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \hbox (badness 10000) detected at line 1017
+Underfull \hbox (badness 10000) detected at line 1015
 []
  []
 
@@ -1453,13 +1433,13 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 (\end occurred when \iftrue on line 4740 was incomplete)
 (\end occurred when \ifx on line 2 was incomplete) 
 Here is how much of TeX's memory you used:
- 21732 strings out of 478994
- 319208 string characters out of 5858184
- 1048912 words of memory out of 5000000
- 38090 multiletter control sequences out of 15000+600000
- 506747 words of font info for 424 fonts, out of 8000000 for 9000
+ 21717 strings out of 478994
+ 319047 string characters out of 5858184
+ 1019623 words of memory out of 5000000
+ 38088 multiletter control sequences out of 15000+600000
+ 503403 words of font info for 416 fonts, out of 8000000 for 9000
  1167 hyphenation exceptions out of 8191
- 86i,14n,88p,2269b,1968s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 86i,14n,88p,2269b,2003s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{H
 footnote.4} has been referenced but does not exist, replaced by a fixed one
 
@@ -1482,13 +1462,12 @@ ve/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive
 /2021/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/local/texlive/2021/te
 xmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2021/texmf-dist
 /fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/typ
-e1/urw/times/utmbi8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/ti
-mes/utmr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/times/utmri8
-a.pfb>
-Output written on wileyNJDv5_AMA.pdf (28 pages, 1809952 bytes).
+e1/urw/times/utmr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/tim
+es/utmri8a.pfb>
+Output written on wileyNJDv5_AMA.pdf (28 pages, 1802302 bytes).
 PDF statistics:
- 864 PDF objects out of 1000 (max. 8388607)
- 625 compressed objects within 7 object streams
+ 860 PDF objects out of 1000 (max. 8388607)
+ 622 compressed objects within 7 object streams
  194 named destinations out of 1000 (max. 500000)
- 100593 words of extra memory for PDF output out of 106986 (max. 10000000)
+ 96497 words of extra memory for PDF output out of 106986 (max. 10000000)
 
