@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.7.15)  19 FEB 2024 19:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.7.15)  20 FEB 2024 06:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1234,7 +1234,7 @@ f>
 -converted-to.pdf figures/heapmap_ds_all.eps>
 (epstopdf)             \includegraphics on input line 572.
 Package epstopdf Info: Output file is already uptodate.
-<figures/heapmap_ds_all-eps-converted-to.pdf, id=351, 578.16pt x 433.62pt>
+<figures/heapmap_ds_all-eps-converted-to.pdf, id=350, 578.16pt x 433.62pt>
 File: figures/heapmap_ds_all-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/heapmap_ds_all-eps-converted-to.pdf>
 Package pdftex.def Info: figures/heapmap_ds_all-eps-converted-to.pdf  used on i
@@ -1261,7 +1261,7 @@ Package epstopdf Info: Source file: <figures/dendogram_ds.eps>
 onverted-to.pdf figures/dendogram_ds.eps>
 (epstopdf)             \includegraphics on input line 612.
 Package epstopdf Info: Output file is already uptodate.
-<figures/dendogram_ds-eps-converted-to.pdf, id=430, 452.69125pt x 544.0325pt>
+<figures/dendogram_ds-eps-converted-to.pdf, id=429, 452.69125pt x 544.0325pt>
 File: figures/dendogram_ds-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/dendogram_ds-eps-converted-to.pdf>
 Package pdftex.def Info: figures/dendogram_ds-eps-converted-to.pdf  used on inp
@@ -1295,7 +1295,7 @@ Package epstopdf Info: Source file: <figures/piechart_plot.eps>
 converted-to.pdf figures/piechart_plot.eps>
 (epstopdf)             \includegraphics on input line 663.
 Package epstopdf Info: Output file is already uptodate.
-<figures/piechart_plot-eps-converted-to.pdf, id=450, 722.7pt x 578.16pt>
+<figures/piechart_plot-eps-converted-to.pdf, id=449, 722.7pt x 578.16pt>
 File: figures/piechart_plot-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/piechart_plot-eps-converted-to.pdf>
 Package pdftex.def Info: figures/piechart_plot-eps-converted-to.pdf  used on in
@@ -1317,7 +1317,7 @@ df>
 s-converted-to.pdf figures/stackedbar_plot.eps>
 (epstopdf)             \includegraphics on input line 669.
 Package epstopdf Info: Output file is already uptodate.
-<figures/stackedbar_plot-eps-converted-to.pdf, id=451, 722.7pt x 433.62pt>
+<figures/stackedbar_plot-eps-converted-to.pdf, id=450, 722.7pt x 433.62pt>
 File: figures/stackedbar_plot-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/stackedbar_plot-eps-converted-to.pdf>
 Package pdftex.def Info: figures/stackedbar_plot-eps-converted-to.pdf  used on 
@@ -1344,7 +1344,7 @@ ted-to.pdf>
 sktop-eps-converted-to.pdf figures/barchart_mobile_desktop.eps>
 (epstopdf)             \includegraphics on input line 728.
 Package epstopdf Info: Output file is already uptodate.
-<figures/barchart_mobile_desktop-eps-converted-to.pdf, id=550, 722.7pt x 433.62
+<figures/barchart_mobile_desktop-eps-converted-to.pdf, id=549, 722.7pt x 433.62
 pt>
 File: figures/barchart_mobile_desktop-eps-converted-to.pdf Graphic file (type p
 df)
@@ -1368,7 +1368,7 @@ Package epstopdf Info: Source file: <figures/popc_ds.eps>
 ted-to.pdf figures/popc_ds.eps>
 (epstopdf)             \includegraphics on input line 791.
 Package epstopdf Info: Output file is already uptodate.
-<figures/popc_ds-eps-converted-to.pdf, id=604, 764.8575pt x 221.82875pt>
+<figures/popc_ds-eps-converted-to.pdf, id=603, 764.8575pt x 221.82875pt>
 File: figures/popc_ds-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/popc_ds-eps-converted-to.pdf>
 Package pdftex.def Info: figures/popc_ds-eps-converted-to.pdf  used on input li
@@ -1385,7 +1385,7 @@ Package epstopdf Info: Source file: <figures/dendogram_rs.eps>
 onverted-to.pdf figures/dendogram_rs.eps>
 (epstopdf)             \includegraphics on input line 798.
 Package epstopdf Info: Output file is already uptodate.
-<figures/dendogram_rs-eps-converted-to.pdf, id=605, 807.015pt x 331.2375pt>
+<figures/dendogram_rs-eps-converted-to.pdf, id=604, 807.015pt x 331.2375pt>
 File: figures/dendogram_rs-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/dendogram_rs-eps-converted-to.pdf>
 Package pdftex.def Info: figures/dendogram_rs-eps-converted-to.pdf  used on inp
@@ -1464,10 +1464,10 @@ xmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2021/texmf-dist
 /fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/typ
 e1/urw/times/utmr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/tim
 es/utmri8a.pfb>
-Output written on wileyNJDv5_AMA.pdf (28 pages, 1802302 bytes).
+Output written on wileyNJDv5_AMA.pdf (28 pages, 1802241 bytes).
 PDF statistics:
- 860 PDF objects out of 1000 (max. 8388607)
- 622 compressed objects within 7 object streams
+ 859 PDF objects out of 1000 (max. 8388607)
+ 621 compressed objects within 7 object streams
  194 named destinations out of 1000 (max. 500000)
  96497 words of extra memory for PDF output out of 106986 (max. 10000000)
 
