@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.7.15)  2 MAR 2024 16:15
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.7.15)  2 MAR 2024 16:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1229,28 +1229,27 @@ f>
 (epstopdf)                    size: 29760 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/heapmap_ds_all-eps
 -converted-to.pdf figures/heapmap_ds_all.eps>
-(epstopdf)             \includegraphics on input line 573.
+(epstopdf)             \includegraphics on input line 580.
 Package epstopdf Info: Output file is already uptodate.
-<figures/heapmap_ds_all-eps-converted-to.pdf, id=353, 578.16pt x 433.62pt>
+<figures/heapmap_ds_all-eps-converted-to.pdf, id=355, 578.16pt x 433.62pt>
 File: figures/heapmap_ds_all-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/heapmap_ds_all-eps-converted-to.pdf>
 Package pdftex.def Info: figures/heapmap_ds_all-eps-converted-to.pdf  used on i
-nput line 573.
+nput line 580.
 (pdftex.def)             Requested size: 404.70924pt x 303.53192pt.
 
-Underfull \hbox (badness 10000) detected at line 574
+Underfull \hbox (badness 10000) detected at line 581
 []
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-
-Underfull \hbox (badness 10000) detected at line 589
+[13]
+Underfull \hbox (badness 10000) detected at line 588
 []
  []
 
-[13]
 Package epstopdf Info: Source file: <figures/dendogram_ds.eps>
 (epstopdf)                    date: 2024-01-03 11:13:15
 (epstopdf)                    size: 572257 bytes
@@ -1260,16 +1259,16 @@ Package epstopdf Info: Source file: <figures/dendogram_ds.eps>
 (epstopdf)                    size: 184395 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/dendogram_ds-eps-c
 onverted-to.pdf figures/dendogram_ds.eps>
-(epstopdf)             \includegraphics on input line 613.
+(epstopdf)             \includegraphics on input line 612.
 Package epstopdf Info: Output file is already uptodate.
-<figures/dendogram_ds-eps-converted-to.pdf, id=372, 452.69125pt x 544.0325pt>
+<figures/dendogram_ds-eps-converted-to.pdf, id=373, 452.69125pt x 544.0325pt>
 File: figures/dendogram_ds-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/dendogram_ds-eps-converted-to.pdf>
 Package pdftex.def Info: figures/dendogram_ds-eps-converted-to.pdf  used on inp
-ut line 613.
+ut line 612.
 (pdftex.def)             Requested size: 362.15349pt x 435.2266pt.
 
-Underfull \hbox (badness 10000) detected at line 614
+Underfull \hbox (badness 10000) detected at line 613
 []
  []
 
@@ -1277,7 +1276,7 @@ Underfull \hbox (badness 10000) detected at line 614
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Underfull \hbox (badness 10000) detected at line 619
+Underfull \hbox (badness 10000) detected at line 618
 []
  []
 
@@ -1295,16 +1294,16 @@ Package epstopdf Info: Source file: <figures/piechart_plot.eps>
 (epstopdf)                    size: 14101 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/piechart_plot-eps-
 converted-to.pdf figures/piechart_plot.eps>
-(epstopdf)             \includegraphics on input line 664.
+(epstopdf)             \includegraphics on input line 663.
 Package epstopdf Info: Output file is already uptodate.
-<figures/piechart_plot-eps-converted-to.pdf, id=452, 722.7pt x 578.16pt>
+<figures/piechart_plot-eps-converted-to.pdf, id=453, 722.7pt x 578.16pt>
 File: figures/piechart_plot-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/piechart_plot-eps-converted-to.pdf>
 Package pdftex.def Info: figures/piechart_plot-eps-converted-to.pdf  used on in
-put line 664.
+put line 663.
 (pdftex.def)             Requested size: 289.07487pt x 231.2599pt.
 
-Underfull \hbox (badness 10000) detected at line 665
+Underfull \hbox (badness 10000) detected at line 664
 []
  []
 
@@ -1317,19 +1316,19 @@ df>
 (epstopdf)                    size: 21995 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/stackedbar_plot-ep
 s-converted-to.pdf figures/stackedbar_plot.eps>
-(epstopdf)             \includegraphics on input line 670.
+(epstopdf)             \includegraphics on input line 669.
 Package epstopdf Info: Output file is already uptodate.
-<figures/stackedbar_plot-eps-converted-to.pdf, id=453, 722.7pt x 433.62pt>
+<figures/stackedbar_plot-eps-converted-to.pdf, id=454, 722.7pt x 433.62pt>
 File: figures/stackedbar_plot-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/stackedbar_plot-eps-converted-to.pdf>
 Package pdftex.def Info: figures/stackedbar_plot-eps-converted-to.pdf  used on 
-input line 670.
+input line 669.
 (pdftex.def)             Requested size: 504.50787pt x 302.70486pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Underfull \hbox (badness 10000) detected at line 685
+Underfull \hbox (badness 10000) detected at line 684
 []
  []
 
@@ -1344,18 +1343,18 @@ ted-to.pdf>
 (epstopdf)                    size: 19448 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/barchart_mobile_de
 sktop-eps-converted-to.pdf figures/barchart_mobile_desktop.eps>
-(epstopdf)             \includegraphics on input line 729.
+(epstopdf)             \includegraphics on input line 728.
 Package epstopdf Info: Output file is already uptodate.
-<figures/barchart_mobile_desktop-eps-converted-to.pdf, id=552, 722.7pt x 433.62
+<figures/barchart_mobile_desktop-eps-converted-to.pdf, id=553, 722.7pt x 433.62
 pt>
 File: figures/barchart_mobile_desktop-eps-converted-to.pdf Graphic file (type p
 df)
 <use figures/barchart_mobile_desktop-eps-converted-to.pdf>
 Package pdftex.def Info: figures/barchart_mobile_desktop-eps-converted-to.pdf  
-used on input line 729.
+used on input line 728.
 (pdftex.def)             Requested size: 361.3491pt x 216.80946pt.
 
-Underfull \hbox (badness 10000) detected at line 730
+Underfull \hbox (badness 10000) detected at line 729
 []
  []
 
@@ -1368,13 +1367,13 @@ Package epstopdf Info: Source file: <figures/popc_ds.eps>
 (epstopdf)                    size: 1212331 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/popc_ds-eps-conver
 ted-to.pdf figures/popc_ds.eps>
-(epstopdf)             \includegraphics on input line 792.
+(epstopdf)             \includegraphics on input line 791.
 Package epstopdf Info: Output file is already uptodate.
-<figures/popc_ds-eps-converted-to.pdf, id=606, 764.8575pt x 221.82875pt>
+<figures/popc_ds-eps-converted-to.pdf, id=607, 764.8575pt x 221.82875pt>
 File: figures/popc_ds-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/popc_ds-eps-converted-to.pdf>
 Package pdftex.def Info: figures/popc_ds-eps-converted-to.pdf  used on input li
-ne 792.
+ne 791.
 (pdftex.def)             Requested size: 420.67291pt x 122.00616pt.
 Package epstopdf Info: Source file: <figures/dendogram_rs.eps>
 (epstopdf)                    date: 2024-01-03 10:56:04
@@ -1385,28 +1384,28 @@ Package epstopdf Info: Source file: <figures/dendogram_rs.eps>
 (epstopdf)                    size: 46695 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/dendogram_rs-eps-c
 onverted-to.pdf figures/dendogram_rs.eps>
-(epstopdf)             \includegraphics on input line 799.
+(epstopdf)             \includegraphics on input line 798.
 Package epstopdf Info: Output file is already uptodate.
-<figures/dendogram_rs-eps-converted-to.pdf, id=607, 807.015pt x 331.2375pt>
+<figures/dendogram_rs-eps-converted-to.pdf, id=608, 807.015pt x 331.2375pt>
 File: figures/dendogram_rs-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/dendogram_rs-eps-converted-to.pdf>
 Package pdftex.def Info: figures/dendogram_rs-eps-converted-to.pdf  used on inp
-ut line 799.
+ut line 798.
 (pdftex.def)             Requested size: 484.21274pt x 198.74402pt.
  [19 <./figures/popc_ds-eps-converted-to.pdf>]
-Underfull \hbox (badness 10000) detected at line 812
+Underfull \hbox (badness 10000) detected at line 811
 []
  []
 
 [20 <./figures/dendogram_rs-eps-converted-to.pdf>] [21] [22] [23]
-Underfull \hbox (badness 1062) in paragraph at lines 921--922
+Underfull \hbox (badness 1062) in paragraph at lines 920--921
 []\T1/ptm/m/n/10 (+20) Our find-ings shows that de-sign smells tend to oc-cur m
 ore of-ten in \T1/pcr/m/n/10 Service Provider\T1/ptm/m/n/10 (+20) , \T1/pcr/m/n
 /10 Interfacer \T1/ptm/m/n/10 (+20) and
  []
 
 [24] (./wileyNJDv5_AMA.bbl [25])
-Overfull \hbox (9.0pt too wide) in paragraph at lines 950--950
+Overfull \hbox (9.0pt too wide) in paragraph at lines 949--949
 [] [] 
  []
 
@@ -1417,7 +1416,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \hbox (badness 10000) detected at line 1016
+Underfull \hbox (badness 10000) detected at line 1015
 []
  []
 
@@ -1435,11 +1434,11 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 (\end occurred when \iftrue on line 4740 was incomplete)
 (\end occurred when \ifx on line 2 was incomplete) 
 Here is how much of TeX's memory you used:
- 21717 strings out of 478994
- 319047 string characters out of 5858184
+ 21723 strings out of 478994
+ 319101 string characters out of 5858184
  1049038 words of memory out of 5000000
  38088 multiletter control sequences out of 15000+600000
- 503403 words of font info for 416 fonts, out of 8000000 for 9000
+ 503853 words of font info for 420 fonts, out of 8000000 for 9000
  1167 hyphenation exceptions out of 8191
  86i,14n,88p,2269b,2048s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{H
@@ -1466,10 +1465,10 @@ xmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2021/texmf-dist
 /fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/typ
 e1/urw/times/utmr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/tim
 es/utmri8a.pfb>
-Output written on wileyNJDv5_AMA.pdf (28 pages, 1803370 bytes).
+Output written on wileyNJDv5_AMA.pdf (28 pages, 1803757 bytes).
 PDF statistics:
- 862 PDF objects out of 1000 (max. 8388607)
- 624 compressed objects within 7 object streams
+ 863 PDF objects out of 1000 (max. 8388607)
+ 625 compressed objects within 7 object streams
  194 named destinations out of 1000 (max. 500000)
  96497 words of extra memory for PDF output out of 106986 (max. 10000000)
 
