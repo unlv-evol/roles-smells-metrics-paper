@@ -96,9 +96,9 @@
 
 Software design is an essential component of software engineering. A well-designed software system leads to reliable and maintainable software \cite{imran2019design, imran2022qualitative}. New software applications nowadays are quite complex and constantly adapting to the ever-changing user requirements, which poses a challenge of maintainability. The ever increasing maintenance costs \cite{jha2019deep} are often a consequence of bad design and development practices commonly observed in software systems. While developing software systems, poor design and implementation choices in source code can negatively affect the maintainability of software systems \cite{palomba2018diffuseness}. The problematic structures identified in source code are known as design smells \cite{kaur2015influence,aversano2020empirical,imran2022qualitative}. Design smells represent structural anomalies that deviate from established design principles, introducing technical debt and impeding the overall effectiveness of the software. For instance, a ``God class" assumes too many responsibilities and usually has very many methods, violating the single-responsibility principle. This design smell is a huge technical debt which affects program readability and comprehension. While the presence of design smells does not impede the operation of the software system, it can affect software development, sustainability, and increase the likelihood of software failure \cite{turkistani2019reducing}. Therefore, mitigating design smells in the source code is imperative for enhancing overall software quality. In the ever-evolving landscape of software development, mobile and desktop applications emerge as predominant software systems. Notably, mobile applications undergo more frequent updates compared to their desktop counterparts \cite{mcilroy2016fresh}. Nevertheless, the need for enhanced software maintenance is important for improving software quality irrespective of the underlying ecosystems. 
 
-Responsibility (role) stereotypes indicate generic responsibilities that classes play in the design of a software system. These roles include; Coordinator (CO), Structurer (ST), Controller (CT), Information Holder (IH), Interfacer (IT), and Service Provider (SP) as initially classified by Wirfs-Brock \cite{wirfs2006characterizing}. In this paradigm, classes are characterized according to the type of responsibility they play in the software design \cite{wirfs2006characterizing}. Knowledge about role-stereotypes has proven very helpful in various tasks of software development and maintenance, such as program understanding, program summarization and quality assurance. Role-stereotypes have also been used in creating better layouts of class diagrams - which results in improved program comprehension \cite{genero2008does,nurwidyantoro2019automated, sharif2009effect,ho2022role}.  Besides this, enhancing source code with role-stereotype information helps improve feature location in source code \cite{alhindawi2013improving}. The benefits of role-stereotypes can be observed as an enrichment of reverse engineering, from the perspective of under-covering software design choices \cite{nurwidyantoro2019automated, ho2022role}.
+Responsibility (role) stereotypes indicate generic responsibilities that classes play in the design of a software system. These roles include; Coordinator (CO), Structurer (ST), Controller (CT), Information Holder (IH), Interfacer (IT), and Service Provider (SP) as initially classified by Wirfs-Brock \cite{wirfs2006characterizing}. In this paradigm, classes are characterized according to the type of responsibility they play in the software design \cite{wirfs2006characterizing}. Knowledge about role-stereotypes has proven very helpful in various tasks of software development and maintenance, such as program understanding, program summarization and quality assurance. Role-stereotypes have also been used in creating better layouts of class diagrams which results in improved program comprehension \cite{genero2008does,nurwidyantoro2019automated, sharif2009effect,ho2022role}.  Besides this, enhancing source code with role-stereotype information helps improve feature location in source code \cite{alhindawi2013improving}. The benefits of role-stereotypes can be observed as an enrichment of reverse engineering, from the perspective of under-covering software design choices \cite{nurwidyantoro2019automated, ho2022role}.
 
-Although the concepts of role-stereotypes and design smells are widely divergent, both are significant contributors to the design and maintenance of software systems. Multiple studies related to design smells focus on developing detection methods and tools to improve software quality \cite{barbez2020machine,kaur2018detecting, liu2018deep}. On the other hand, studies related to role-stereotypes focuses on classification \cite{dragan2010automatic,nurwidyantoro2019automated} and application of role-stereotypes for example in UML class diagram design \cite{kuzniarz2004empirical}. The substantial interest in enhancing software design and maintainability within the software engineering industry reinforces the importance of understanding the correlation between design smells and role-stereotypes.
+Although the concepts of role-stereotypes and design smells are widely divergent, both are significant contributors to the design and maintenance of software systems. Several studies related to design smells focus on developing detection methods and tools to improve software quality \cite{barbez2020machine,kaur2018detecting, liu2018deep}. On the other hand, studies related to role-stereotypes focuses on classification \cite{dragan2010automatic,nurwidyantoro2019automated} and application of role-stereotypes for example in UML class diagram design \cite{kuzniarz2004empirical}. The substantial interest in enhancing software design and maintainability within the software engineering industry reinforces the importance of understanding the correlation between design smells and role-stereotypes.
 
  Building this empirical knowledge can provide the following significance; (1) \textbf{software maintainability:} understanding the correlation between design smells and role stereotypes can help in identifying patterns that impact software maintainability. This knowledge aids developers in proactively addressing design issues to prevent long-term software degradation, (2) \textbf{improving code quality:} identifying and mitigating design smells contributes to overall code quality improvement. Developers can prioritize and address design issues that are more likely to impact the specific role stereotypes, (3) \textbf{efficient code reviews:} guide code reviews. Developers can focus on areas of the codebase that are more likely to be associated with specific roles, leading to more efficient and targeted code inspections, (4) \textbf{guided code refactoring:} knowing the impact of design smells on role stereotypes provides valuable guidance for refactoring efforts. Developers can prioritize refactoring activities based on the roles affected, ensuring that improvements align with the intended behavior and responsibilities of each software component, (5) \textbf{early  defect detection:} this is particularly important in the software development life cycle, where addressing issues early on is more cost-effective than dealing with them in later stages and (6) \textbf{role-specific metrics:} the empirical knowledge gained in this area can contribute to the development of role-specific metrics for assessing the health and quality of software components.
 
@@ -111,12 +111,12 @@ As such, we hope to open up the possibility of enhancing design smell metrics wi
 	\item [(4)] Finally, the paper provides insights to software developers, designers and researchers on previously concealed behavior and relationships between design smells and role-stereotypes.
 \end{itemize}
 
-The rest of this paper proceeds as follows: In Section~\ref{sec:terminologies}, we define key terminologies and provide a concrete example to motivate the need for the study. Section~\ref{sec:relatedwork} outlines related work and identifies study gaps. Next, in Section~\ref{sec:method}, we provide a comprehensive explanation of the research questions, tools, methods, and analysis performed. The results of our analysis are presented in Section~\ref{sec:result}. Section~\ref{sec:ds_imp} focuses on discussions and implications of the study. The threats to validity are discussed in Section~\ref{sec:threats}. Finally, Section~\ref{sec:conclusion} concludes the paper and provides direction for future work.
+The rest of this paper proceeds as follows: In Section~\ref{sec:terminologies}, we present the background of the study, derive terminologies and provide a concrete example to motivate the need for the study. Section~\ref{sec:relatedwork} outlines related work and identifies study gaps. Next, in Section~\ref{sec:method}, we provide a comprehensive explanation of the research questions, tools, methods, and analysis performed. The results of our analysis are presented in Section~\ref{sec:result}. Section~\ref{sec:ds_imp} focuses on discussions and implications of the study. The threats to validity are discussed in Section~\ref{sec:threats}. Finally, Section~\ref{sec:conclusion} concludes the paper and provides direction for future work.
 
-\section{TERMINOLOGY AND CONCRETE EXAMPLE}\label{sec:terminologies}
-In this section, we define some of the terminology used throughout this study, and show a concrete example.
+\section{BACKGROUND}\label{sec:terminologies}
+In this section, we derive important terminologies used throughout the study and provide a concrete example illustrating the intrinsic relationship between design smells and role-stereotypes, which can be observed through code inspection.  The objective of this illustration is to validate the co-occurrence of design smells and role stereotypes in actively maintained codebases, highlighting the necessity for deeper exploration into their co-occurrence dynamics. As previously noted, while role stereotypes and design smells are loosely distinct concepts, both exert significant influence on the design and maintenance of software systems.
 \subsection{Terminology}
-After providing an overview of the problem, let us proceed to formally define the terms used in our study
+%After providing an overview of the problem, let us proceed to formally define the terms used in our study
 \begin{itemize}
 	\item \textbf{Role stereotypes:} Denote generic responsibilities that classes undertake in the design of a software system. We employ terms such as ``class role'', ``class responsibility'', and ``class role stereotypes'' interchangeably. It is important to acknowledge that the formal definition is derived from a software design standpoint. However, in this paper, we examine role stereotypes from the implementation perspective.
 	
@@ -321,6 +321,7 @@ To detect design smells in source code, a number of tools are available. In this
 		RULE : LongParameterListClass { (METRIC: NOParam, VERY_HIGH, 6) } ; 
 	};
 \end{verbatim}
+Using the rule card provided, the SAD tool performs a scan on Java classes, parsing their methods' signatures. For each method, it checks the number of parameter lists against the threshold specified by the \textit{NOParam} metric (which is set to less than 6). If the count of parameters exceeds or equals 6 (\textit{NOParam} >= 6), the tool identifies a ``LongParameterList'' occurrence within that class and saves the result in a ``.ini'' file. A sample output of this process is shown in Listing \ref{lst:dscode}.
 
 \begin{table*}
 	\centering % used for centering table
@@ -409,7 +410,7 @@ To detect design smells in source code, a number of tools are available. In this
 	\subsubsection*{Step 3: Role stereotypes classification}
 	The processing of role-stereotype data was based on the replication package offered by Nurwidyantoro et al. \cite{nurwidyantoro2019automated, ho2022role}. First, the selected project source code
 	is passed to srcML\footnote{https://www.srcml.org/}, a lightweight, highly scalable, robust, multi-language parsing tool to convert source code into an XML format. Next,
-	we built unlabeled data consisting of 21 features for each project. In this study, the feature extraction task was carried out as follows;
+	we built unlabeled data consisting of 21 features for each project. These classification feature are already published in \cite{nurwidyantoro2019automated},\cite{ho2022role}. In this study, the feature extraction task was carried out as follows;
 	\begin{enumerate}
 		\item Create a srcML representation of the source code. The output of srcML tool is a list of source
 		code classes in a standardized XML format.
@@ -948,9 +949,9 @@ The authors declare no potential conflict of interests.
 
 \appendix
 
-\bmsection{Additional Results\label{app1}}
+\bmsection{Additional Information\label{app1}}
 %\vspace*{12pt}
-
+In this appendix, we provide additional information and results referenced in the main body of this study.
 \begin{table*}[h]%
 	\caption{Provides a summary of the percentages of classes in {\bf desktop} applications categorized by role-stereotypes. It distinguishes between classes with design smells and those without design smells in relation to the total classes within the project. The highlighted cells draw attention to role-stereotypes exhibiting the highest percentage of classes with design smells for a specific project.\label{table:tb_percentages-desktop}}
 	\begin{tabular*}{\textwidth}{@{\extracolsep\fill}llllllllllllll@{}}
@@ -1012,7 +1013,7 @@ The authors declare no potential conflict of interests.
 \end{table*}
 
 \begin{table*}[h]
-	\caption{Design smell detection metrics.\label{table:metric}} % title of Table
+	\caption{Detailed description of metrics used in the Software Architectural Defect (SAD) tool for the detection of design smells.\label{table:metric}} % title of Table
 	\centering % used for centering table
 	\begin{tabularx}{\textwidth}{llX}
 		\toprule 
@@ -1029,7 +1030,7 @@ The authors declare no potential conflict of interests.
 		9. & NOParam & Maximum number of parameters of the methods of an entity.\\ 
 		10. & NOTI & Highest number of transitive invocations among methods of a class. See the Law of Demeter for a definition.\\ 
 		11. & USELESS & Same value for any entity: 1.\\ 
-		12. & WMC & Weight of an entity as the number of method invocations in each method. (Default constructors are considered even if not explicitly declared.).\\
+		12. & WMC & Weight of an entity as the number of method invocations in each method. (Default constructors are considered even if not explicitly declared).\\
 		\bottomrule
 	\end{tabularx}
 \end{table*}
