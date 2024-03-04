@@ -83,7 +83,7 @@
 \maketitle
 
 \renewcommand\thefootnote{}
-\footnotetext{\textbf{Abbreviations:} OSS, open source software; APC, antigen-presenting cells; IRF, interferon regulatory factor.}
+\footnotetext{\textbf{Abbreviations:} OSS, open source software.}
 
 \renewcommand\thefootnote{\fnsymbol{footnote}}
 \setcounter{footnote}{1}
@@ -353,7 +353,7 @@ Using the rule card provided, the SAD tool performs a scan on Java classes, pars
 		\end{tabular*}
 		\label{table:ds_types} % is used to refer this table in the text
 	\end{table*}
-	Design smells are detected and stored in ``{\tt .ini}'' files. The file names are tagged with a specific design smell type. For example, in the K9 mail project, {\tt LongParameterList} design smell is stored as {\tt DetectionResults in K9 for LongParameterList.ini}. Our goal is to extract class names and the corresponding design smell detected in that class. Listing~\ref{lst:dscode} shows a sample content of design smell detection file in its raw format. Based on the structure of the \textit{``.ini''}, we derived custom regular expressions to extract class names and their corresponding design smells. In the case of our example in Listing~\ref{lst:dscode}, we use this regex: {\tt k9mail[a-zA-Z0-9.-]+}. For each design smell, we count the number of its occurrence in a given class, otherwise, the value {\tt 0} is assigned\cite{ogenrwot2021integration, ogenrwot, ogenrwot2021using}. The summary of this process is illustrated as pseudo-code in Algorithm \ref{al:process_ds} and the actual implementation can be obtain from our replication package. Table \ref{table:ds_processed} shows a sample output of processed design smells data.
+	Design smells are detected and stored in ``{\tt .ini}'' files. The file names are tagged with a specific design smell type. For example, in the K9 mail project, {\tt LongParameterList} design smell is stored as {\tt DetectionResults in K9 for LongParameterList.ini}. Our goal is to extract class names and the corresponding design smell detected in that class. Listing~\ref{lst:dscode} shows a sample content of design smell detection file in its raw format. Based on the structure of the \textit{``.ini''}, we derived custom regular expressions to extract class names and their corresponding design smells. In the case of our example in Listing~\ref{lst:dscode}, we use this regex: {\tt k9mail[a-zA-Z0-9.-]+}. For each design smell, we count the number of its occurrence in a given class, otherwise, the value {\tt 0} is assigned\cite{ogenrwot2021integration, ogenrwot, ogenrwot2021using}. The summary of this process is illustrated as pseudo-code in Algorithm \ref{al:process_ds} and the actual implementation can be obtain from our replication package\footnotetext{\href{https://doi.org/10.5281/zenodo.10775827}{10.5281/zenodo.10775827}}. Table \ref{table:ds_processed} shows a sample output of processed design smells data.
 	%%% algorithm for preprocessing DS
 	\begin{algorithm}
 		\caption{\enskip Peusocode for Extracting Design Smells}\label{alg1}
@@ -929,7 +929,7 @@ Using the rule card provided, the SAD tool performs a scan on Java classes, pars
 \textbf{Michel R.V. Chauudron:} conceptualisation, supervision, review and editing manuscript. \textbf{Joyce Nakatumba-Nabende:} writing, review and editing manuscript.  \textbf{John Businge:} review and editing manuscript. \textbf{Daniel Ogenrwot:} data collection, analysis and writing original draft.
 
 \bmsection*{Data Availability Statement}
-The data and script that support the findings of this study are available in 
+The data and script that support the findings of this study are available in \href{https://doi.org/10.5281/zenodo.10775827}{10.5281/zenodo.10775827}
 
 \bmsection*{Conflict of interest}
 
